@@ -62,7 +62,7 @@ const NewProduct = () => {
 
   return (
     <React.Fragment>
-      {console.log(error)}
+      {console.log(loading)}
       <form className="product-form" onSubmit={productSubmitHandler}>
         {/* {isLoading && <LoadingSpinner asOverlay />} */}
         <Input

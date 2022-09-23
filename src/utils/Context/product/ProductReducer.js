@@ -15,7 +15,7 @@ const productReducer = (state, action) => {
     case 'ADD_PRODUCT':
       return {
         ...state,
-        loading: false,
+        loading: false, //MESSAGEHERE
       }
     case 'ADD_PRODUCT_FAILED':
       return {
