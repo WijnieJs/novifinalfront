@@ -5,6 +5,7 @@ const productReducer = (state, action) => {
         ...state,
         products: action.payload,
         loading: false,
+        error: '',
       }
     case 'SET_LOADING':
       return {
@@ -15,6 +16,12 @@ const productReducer = (state, action) => {
       return {
         ...state,
         loading: false,
+      }
+    case 'ADD_PRODUCT_FAILED':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       }
     case 'CLEAR_PRODUCTS':
       return {

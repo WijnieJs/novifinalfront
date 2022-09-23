@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from '../../components/Forms/Button'
 import Input from '../../components/Forms/Input'
 import ProductContext from '../../utils/Context/product/ProductContext'
-import axios from 'axios'
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../utils/validators'
 import { useForm } from '../../utils/hooks/form-hook'
 import './ProductForm.css'
@@ -16,7 +15,9 @@ import { addProduct } from '../../utils/Context/product/ProductAction'
 // }
 
 const NewProduct = () => {
-  const { products, loading, repos, dispatch } = useContext(ProductContext)
+  const { products, loading, error, repos, dispatch } = useContext(
+    ProductContext,
+  )
 
   const [formState, inputHandler] = useForm(
     {
@@ -50,18 +51,18 @@ const NewProduct = () => {
       price: formState.inputs.price.value,
       publised: formState.inputs.publised.value,
     }
-
     try {
       const response = await addProduct(data)
-      dispatch({ type: 'ADD_PRODUCT' }, response.data)
+      // dispatch({ type: 'ADD_PRODUCT' }, response.data)
       console.log(response)
     } catch (err) {
-      console.log(err)
+      console.log(err.response.data)
     }
   }
 
   return (
     <React.Fragment>
+      {console.log(error)}
       <form className="product-form" onSubmit={productSubmitHandler}>
         {/* {isLoading && <LoadingSpinner asOverlay />} */}
         <Input
@@ -73,6 +74,7 @@ const NewProduct = () => {
           errorText="Please enter a valid title."
           onInput={inputHandler}
         />
+
         <Input
           id="description"
           element="textarea"

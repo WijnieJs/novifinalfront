@@ -11,7 +11,6 @@ const Products = () => {
     dispatch({ type: 'SET_LOADING' })
     const getProducts = async () => {
       const productData = await fetchUsers()
-      console.log(productData)
 
       dispatch({ type: 'GET_PRODUCTS', payload: productData })
     }

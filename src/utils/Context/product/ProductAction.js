@@ -13,16 +13,14 @@ export const fetchUsers = async () => {
 
 // New product
 export const addProduct = async (data) => {
-  try {
-    const response = await axios.post(
-      'http://localhost:8080/api/public/newproduct',
-      {
-        title: data.title,
-        description: data.description,
-        price: data.price,
-        publised: data.publised,
-      },
-    )
-    return response.data
-  } catch (error) {}
+  const response = await axios.post(
+    'http://localhost:8080/api/public/newproduct',
+    {
+      title: data.title,
+      description: data.description,
+      price: data.price,
+      publised: data.publised,
+    },
+  )
+  return response.data
 }
