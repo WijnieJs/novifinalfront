@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import Button from '../../components/Forms/Button'
 import Input from '../../components/Forms/Input'
-import ProductContext from '../../components/Context/product/ProductContext'
+import ProductContext from '../../utils/Context/product/ProductContext'
 import axios from 'axios'
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../utils/validators'
 import { useForm } from '../../utils/hooks/form-hook'
 import './ProductForm.css'
-import { addProduct } from '../../components/Context/product/ProductAction'
+import { addProduct } from '../../utils/Context/product/ProductAction'
 
 // {
 //     "title" : "into postman",
@@ -57,7 +57,6 @@ const NewProduct = () => {
       console.log(response)
     } catch (err) {
       console.log(err)
-      dispatch({ type: 'ERROR', err: err.response })
     }
   }
 

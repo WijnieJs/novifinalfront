@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
-import ProductContext from '../../components/Context/product/ProductContext'
-import { fetchUsers } from '../../components/Context/product/ProductAction'
+import ProductContext from '../../utils/Context/product/ProductContext'
+import { fetchUsers } from '../../utils/Context/product/ProductAction'
 
 import ProductList from '../../components/Products/ProductList'
 

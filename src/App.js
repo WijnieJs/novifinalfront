@@ -3,7 +3,7 @@ import Header from './components/Layout/Header'
 import Products from './pages/Products/Products'
 import NewProduct from './pages/Products/NewProduct'
 
-import { ProductProvider } from './components/Context/product/ProductContext'
+import { ProductProvider } from './utils/Context/product/ProductContext'
 
 function App() {
   return (
