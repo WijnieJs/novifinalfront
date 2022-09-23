@@ -11,11 +11,17 @@ const productReducer = (state, action) => {
         ...state,
         loading: true,
       }
+    case 'ADD_PRODUCT':
+      return {
+        ...state,
+        loading: false,
+      }
     case 'CLEAR_PRODUCTS':
       return {
         ...state,
         products: [],
       }
+
     default:
       return state
   }

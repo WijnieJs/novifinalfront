@@ -1,8 +1,10 @@
 import React from 'react'
 import Header from './components/Layout/Header'
-import Products from './pages/Products'
+import Products from './pages/Products/Products'
+import NewProduct from './pages/Products/NewProduct'
 
-import { ProductProvider } from './components/context/product/ProductContext'
+import { ProductProvider } from './components/Context/product/ProductContext'
+
 function App() {
   return (
     <React.Fragment>
@@ -10,7 +12,7 @@ function App() {
         <Header />
         <main>
           <h1>Here it is</h1>
-          <Products />
+          <NewProduct />
         </main>
         {/* Add login screen, register screen */}
         {/* add Form  hook to send credentials to api */}

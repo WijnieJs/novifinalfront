@@ -5,10 +5,11 @@ const ProductContext = createContext()
 
 export const ProductProvider = ({ children }) => {
   const initialState = {
-    users: [],
+    products: [],
     user: {},
     repos: [],
     loading: false,
+    errorMessage: '',
   }
 
   const [state, dispatch] = useReducer(productReducer, initialState)
