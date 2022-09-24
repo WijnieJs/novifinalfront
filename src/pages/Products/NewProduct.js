@@ -4,12 +4,29 @@ import ErrorModal from '../../components/UI-interfaces/ErrorModal'
 import axios from 'axios'
 import Button from '../../components/Forms/Button'
 import Input from '../../components/Forms/Input'
+<<<<<<< HEAD
+=======
+
+>>>>>>> copyone
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../utils/validators'
-import { useForm } from '../../utils/hooks/form-hook'
+
+import { useForm } from '../../utils/Hooks/form-hook'
+import ProductContext from '../../utils/context/products-context'
 import './ProductForm.css'
+<<<<<<< HEAD
 import { addProduct } from '../../utils/Context/product/ProductAction'
 import { ProductContext } from '../../utils/Context/product/ProductContext'
 import { useHttpClient } from '../../utils/hooks/http-hook'
+=======
+// import { addProduct } from '../../utils/Context/product/ProductAction'
+
+// {
+//     "title" : "into postman",
+//     "description" : "for a new ",
+//     "published" : true,
+//     "price" : 11.2
+// }
+>>>>>>> copyone
 
 const NewProduct = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient()
@@ -54,10 +71,15 @@ const NewProduct = () => {
       price: formState.inputs.price.value,
       publised: formState.inputs.publised.value,
     }
+<<<<<<< HEAD
     dispatch({ type: 'SET_ERROR' }, false)
 
     try {
       const response = await addProduct(data)
+=======
+    let response
+    try {
+>>>>>>> copyone
       let msg = response
       // console.log(response)
 
@@ -70,8 +92,11 @@ const NewProduct = () => {
 
   return (
     <React.Fragment>
+<<<<<<< HEAD
       <ErrorModal error={errorMsg} onClear={clearError} />
 
+=======
+>>>>>>> copyone
       <form className="product-form" onSubmit={productSubmitHandler}>
         {/* {isLoading && <LoadingSpinner asOverlay />} */}
         <Input
