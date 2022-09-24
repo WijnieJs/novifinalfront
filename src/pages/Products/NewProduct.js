@@ -51,13 +51,18 @@ const NewProduct = () => {
       price: formState.inputs.price.value,
       publised: formState.inputs.publised.value,
     }
+    dispatch({ type: 'SET_ERROR' }, false)
+
     try {
       const response = await addProduct(data)
-      // dispatch({ type: 'ADD_PRODUCT' }, response.data)
-      console.log(response)
-    } catch (err) {
-      console.log(err.response.data)
-    }
+      let msg = response
+      // console.log(response)
+
+      if (response.response.status === 400 || 404) {
+        msg = response.response.data
+        // console.log(msg)
+      }
+    } catch (err) {}
   }
 
   return (

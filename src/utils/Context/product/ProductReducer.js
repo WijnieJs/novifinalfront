@@ -12,21 +12,21 @@ const productReducer = (state, action) => {
         ...state,
         loading: true,
       }
+    case 'SET_ERROR':
+      return {
+        ...state,
+        loading: false,
+      }
     case 'ADD_PRODUCT':
       return {
         ...state,
-        loading: false, //MESSAGEHERE
+        loading: false,
       }
     case 'ADD_PRODUCT_FAILED':
       return {
         ...state,
         loading: false,
-        error: action.payload,
-      }
-    case 'CLEAR_PRODUCTS':
-      return {
-        ...state,
-        products: [],
+        errorMessage: 'Error',
       }
 
     default:

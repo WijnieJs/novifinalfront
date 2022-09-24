@@ -9,7 +9,7 @@ export const ProductProvider = ({ children }) => {
     user: {},
     repos: [],
     loading: false,
-    errorMessage: '',
+    error: null,
   }
 
   const [state, dispatch] = useReducer(productReducer, initialState)
