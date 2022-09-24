@@ -1,23 +1,20 @@
 import React, { useContext, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import ErrorModal from '../../components/UI-interfaces/ErrorModal'
+import axios from 'axios'
 import Button from '../../components/Forms/Button'
 import Input from '../../components/Forms/Input'
-import ProductContext from '../../utils/Context/product/ProductContext'
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../utils/validators'
 import { useForm } from '../../utils/hooks/form-hook'
 import './ProductForm.css'
 import { addProduct } from '../../utils/Context/product/ProductAction'
-
-// {
-//     "title" : "into postman",
-//     "description" : "for a new ",
-//     "published" : true,
-//     "price" : 11.2
-// }
+import { ProductContext } from '../../utils/Context/product/ProductContext'
+import { useHttpClient } from '../../utils/hooks/http-hook'
 
 const NewProduct = () => {
-  const { products, loading, error, repos, dispatch } = useContext(
-    ProductContext,
-  )
+  const { isLoading, error, sendRequest, clearError } = useHttpClient()
+  const products = useContext(ProductContext)
+  const [errorMsg, setErrorMsg] = useState()
 
   const [formState, inputHandler] = useForm(
     {
@@ -34,13 +31,19 @@ const NewProduct = () => {
         isValid: false,
       },
       price: {
-        value: Number,
+        value: '',
         isValid: false,
       },
     },
     false,
   )
-
+  const history = useHistory()
+  const data = {
+    title: formState.inputs.title.value,
+    description: formState.inputs.description.value,
+    price: formState.inputs.price.value,
+    publised: formState.inputs.publised.value,
+  }
   const productSubmitHandler = async (e) => {
     e.preventDefault()
     dispatch({ type: 'SET_LOADING' }, true)
@@ -51,18 +54,24 @@ const NewProduct = () => {
       price: formState.inputs.price.value,
       publised: formState.inputs.publised.value,
     }
+    dispatch({ type: 'SET_ERROR' }, false)
+
     try {
       const response = await addProduct(data)
-      // dispatch({ type: 'ADD_PRODUCT' }, response.data)
-      console.log(response)
-    } catch (err) {
-      console.log(err.response.data)
-    }
+      let msg = response
+      // console.log(response)
+
+      if (response.response.status === 400 || 404) {
+        msg = response.response.data
+        // console.log(msg)
+      }
+    } catch (err) {}
   }
 
   return (
     <React.Fragment>
-      {console.log(loading)}
+      <ErrorModal error={errorMsg} onClear={clearError} />
+
       <form className="product-form" onSubmit={productSubmitHandler}>
         {/* {isLoading && <LoadingSpinner asOverlay />} */}
         <Input
@@ -91,6 +100,15 @@ const NewProduct = () => {
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid address."
           onInput={inputHandler}
+        />
+
+        <Input
+          type="number"
+          element="input"
+          label="Enter a price"
+          errorText="Please enter a price"
+          onInput={inputHandler}
+          validators={[VALIDATOR_REQUIRE()]}
         />
         {/* <ImageUpload
           id="image"
