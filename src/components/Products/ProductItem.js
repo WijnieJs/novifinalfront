@@ -1,43 +1,40 @@
-import React from 'react'
-
-import productHolder from '../../images/s.webp'
-import Button from '../Forms/Button'
+import React, { useContext } from 'react'
+import ProductContext from '../../utils/context/products-context'
 import Card from '../UI-interfaces/Card'
+import Button from '../Forms/Button'
+import Image from '../UI-interfaces/Image'
+
+import Sampleimage from '../../images/jsgreen.png'
 import './ProductItem.css'
 
-const ProductItem = (props) => {
+const ProductItem = ({ product }, props) => {
+  const { dispatch } = useContext(ProductContext)
+
   return (
-    <React.Fragment style={{ marginBottom: '1rem' }}>
-      <li>
-        <Card className="product-item">
-          {/* {props.loading && <LoadingSpinner asOverlay />} */}
+    <React.Fragment>
+      <li className="product-item">
+        <Card className="product-item__content">
           <div className="product-item__image">
-            <img src={productHolder} alt={props.title} />
+            <Image contain imageUrl={Sampleimage} />
           </div>
+
           <div className="product-item__info">
-            <h2>Title</h2>
-            <h3>brand</h3>
-            <p>descriptiom</p>
-            <p>price</p>
+            <h2>{product.title}</h2>
+            <h3>{product.description}</h3>
+            <p> {product.price}</p>
           </div>
-          <div className="product-item__actions">
-            <Button inverse onClick={() => console.log('add to card')}>
-              AddToCart
-            </Button>
-            {/* {auth.userId === props.creatorId && (
-              <Button to={`/places/${props.id}`}>EDIT</Button>
-            )} */}
 
-            <Button to={`/places/${props.id}`}>EDIT</Button>
-
-            <Button danger onClick={() => console.log('add to favs')}>
-              Add favo
-            </Button>
-          </div>
+          <Button
+            onClick={() =>
+              dispatch({ type: 'REMOVE_NOTE', title: product.title })
+            }
+          >
+            DELETE
+          </Button>
         </Card>
       </li>
     </React.Fragment>
   )
 }
 
-export default ProductItem
+export { ProductItem as default }
