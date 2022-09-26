@@ -19,11 +19,12 @@ export const addProduct = async (data) => {
       {
         title: data.title,
         description: data.description,
+        published: data.published,
         price: data.price,
-        publised: data.publised,
+        imageURL: data.image,
       },
     )
-    return response.data
+    return response
   } catch (error) {
     return error
   }

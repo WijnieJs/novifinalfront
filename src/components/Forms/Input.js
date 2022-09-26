@@ -49,9 +49,10 @@ const Input = (props) => {
       type: 'TOUCH',
     })
   }
+  let element = null
 
-  const element =
-    props.element === 'input' ? (
+  if (props.element === 'input') {
+    element = (
       <input
         id={props.id}
         type={props.type}
@@ -60,7 +61,31 @@ const Input = (props) => {
         onBlur={touchHandler}
         value={inputState.value}
       />
-    ) : (
+    )
+  } else if (props.element === 'select') {
+    element = (
+      <select
+        id={props.id}
+        rows={props.rows || 3}
+        onChange={changeHandler}
+        onBlur={touchHandler}
+        value={inputState.value}
+        style={{
+          backgroundColor: '#red',
+          height: '70px',
+          width: '110px',
+          fontSize: '18px',
+          textAlign: 'center',
+        }}
+      >
+        <option defaultValue value="false">
+          false
+        </option>
+        <option value="true">true</option>
+      </select>
+    )
+  } else {
+    element = (
       <textarea
         id={props.id}
         rows={props.rows || 3}
@@ -69,6 +94,7 @@ const Input = (props) => {
         value={inputState.value}
       />
     )
+  }
 
   return (
     <div

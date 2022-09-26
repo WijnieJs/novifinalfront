@@ -13,6 +13,7 @@ function App() {
 
   useEffect(() => {
     const products = JSON.parse(localStorage.getItem('products'))
+    console.log(products)
 
     if (products) {
       dispatch({ type: 'INIT_PRODUCTS', products })
@@ -22,7 +23,7 @@ function App() {
   useEffect(() => {
     const getProducts = async () => {
       const products = await fetchUsers()
-
+      console.log(products)
       localStorage.setItem('products', JSON.stringify(products))
     }
     getProducts()
@@ -32,12 +33,17 @@ function App() {
     <React.Fragment>
       <ProductsContext.Provider value={{ products, dispatch }}>
         <Layout>
-          <ProductList />
-          {/* <NewProduct /> */}
+          {/* <ProductList /> */}
+          <NewProduct />
         </Layout>
       </ProductsContext.Provider>
     </React.Fragment>
   )
 }
+
+/// ADDING ROUTES
+// ADDING ADD TO CART
+// ADD LOGIN
+// Add Checkout
 
 export default App
