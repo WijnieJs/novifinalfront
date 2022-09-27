@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import ProductContext from '../../utils/context/products-context'
+import ProductContext from '../../utils/context/Products/products-context'
 import Card from '../UI-interfaces/Card'
 import Button from '../Forms/Button'
 import Image from '../UI-interfaces/Image'

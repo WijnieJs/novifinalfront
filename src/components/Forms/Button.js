@@ -1,46 +1,33 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import './Button.css'
 
-const Button = (props) => {
-  if (props.href) {
-    return (
-      <a
-        className={`button button--${props.size || 'default'} ${
-          props.inverse && 'button--inverse'
-        } ${props.danger && 'button--danger'}`}
-        href={props.href}
-      >
-        {props.children}
-      </a>
-    )
-  }
-  if (props.to) {
-    return (
-      <button
-        to={props.to}
-        exact={props.exact}
-        className={`button button--${props.size || 'default'} ${
-          props.inverse && 'button--inverse'
-        } ${props.danger && 'button--danger'}`}
-      >
-        {props.children}
-      </button>
-    )
-  }
-  return (
+const button = (props) =>
+  !props.link ? (
     <button
-      className={`button button--${props.size || 'default'} ${
-        props.inverse && 'button--inverse'
-      } ${props.danger && 'button--danger'}`}
-      type={props.type}
+      className={[
+        'button',
+        `button--${props.design}`,
+        `button--${props.mode}`,
+      ].join(' ')}
       onClick={props.onClick}
-      disabled={props.disabled}
+      disabled={props.disabled || props.loading}
+      type={props.type}
+    >
+      {props.loading ? 'Loading...' : props.children}
+    </button>
+  ) : (
+    <Link
+      className={[
+        'button',
+        `button--${props.design}`,
+        `button--${props.mode}`,
+      ].join(' ')}
+      to={props.link}
     >
       {props.children}
-    </button>
+    </Link>
   )
-}
 
-export default Button
+export default button
