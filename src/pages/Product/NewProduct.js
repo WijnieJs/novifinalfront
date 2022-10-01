@@ -3,9 +3,10 @@ import Button from '../../components/Forms/Button'
 import Input from '../../components/Forms/Input'
 
 import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../utils/validators'
-import { addProduct } from '../../utils/Hooks/Api-hook'
+
+import { ADD_PRODUCT } from '../../utils/context/types'
 import { useForm } from '../../utils/Hooks/form-hook'
-import ProductContext from '../../utils/context/Products/products-context'
+import ProductContext from '../../utils/context/product/productContext'
 import './ProductForm.css'
 // import { addProduct } from '../../utils/Context/product/ProductAction'
 
@@ -46,36 +47,36 @@ const NewProduct = () => {
   )
   const productSubmitHandler = async (e) => {
     e.preventDefault()
-    dispatch({
-      type: 'ADD_PRODUCT',
-      title: formState.inputs.title.value,
-      description: formState.inputs.description.value,
-      published: formState.inputs.published.value,
-      price: formState.inputs.price.value,
-      image: formState.inputs.image.value,
-    })
+    // dispatch({
+    //   type: 'ADD_PRODUCT',
+    //   title: formState.inputs.title.value,
+    //   description: formState.inputs.description.value,
+    //   published: formState.inputs.published.value,
+    //   price: formState.inputs.price.value,
+    //   image: formState.inputs.image.value,
+    // })
 
-    const data = {
-      title: formState.inputs.title.value,
-      description: formState.inputs.description.value,
-      published: formState.inputs.published.value,
-      price: formState.inputs.price.value,
-      image: formState.inputs.image.value,
-    }
+    // const data = {
+    //   title: formState.inputs.title.value,
+    //   description: formState.inputs.description.value,
+    //   published: formState.inputs.published.value,
+    //   price: formState.inputs.price.value,
+    //   image: formState.inputs.image.value,
+    // }
 
-    const response = await addProduct(data)
-    if (response.status === 200) {
-      console.log(response.data.message)
-      setHttpError(response.data.message)
-    }
-    if (
-      response.name === 'AxiosError' ||
-      response.status === 401 ||
-      response.status === 400
-    ) {
-      console.log(response.response.data)
-      setHttpError(response.response.data.message)
-    }
+    // const response = await addProduct(data)
+    // if (response.status === 200) {
+    //   console.log(response.data.message)
+    //   setHttpError(response.data.message)
+    // }
+    // if (
+    //   response.name === 'AxiosError' ||
+    //   response.status === 401 ||
+    //   response.status === 400
+    // ) {
+    //   console.log(response.response.data)
+    //   setHttpError(response.response.data.message)
+    // }
 
     console.log('response')
   }
@@ -115,12 +116,13 @@ const NewProduct = () => {
         />
         <Input
           id="price"
-          element="input"
+          element="number"
           label="price"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid address."
+          errorText="Please only Digits."
           onInput={inputHandler}
         />
+
         <Input
           id="image"
           element="input"

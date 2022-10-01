@@ -84,6 +84,17 @@ const Input = (props) => {
         <option value="true">true</option>
       </select>
     )
+  } else if (props.element === 'number') {
+    element = (
+      <input
+        id={props.id}
+        type="number"
+        placeholder={props.placeholder}
+        onChange={changeHandler}
+        onBlur={touchHandler}
+        value={inputState.value}
+      />
+    )
   } else {
     element = (
       <textarea

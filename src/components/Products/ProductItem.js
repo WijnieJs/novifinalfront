@@ -1,40 +1,37 @@
-import React, { useContext } from 'react'
-import ProductContext from '../../utils/context/Products/products-context'
-import Card from '../UI-interfaces/Card'
-import Button from '../Forms/Button'
-import Image from '../UI-interfaces/Image'
+import React from 'react';
+import Card from "../UI-interfaces/Card"
+import Image from "../UI-interfaces/Image"
+import Button from "../Forms/Button"
 
-import Sampleimage from '../../images/jsgreen.png'
 import './ProductItem.css'
 
-const ProductItem = ({ product }, props) => {
-  const { dispatch } = useContext(ProductContext)
 
+import Sampleimage from '../../images/jsgreen.png'
+
+const ProductItem = () => {
   return (
-    <React.Fragment>
-      <li className="product-item">
-        <Card className="product-item__content">
-          <div className="product-item__image">
-            <Image contain imageUrl={Sampleimage} />
-          </div>
+    <li className="product-item">
+      <Card className="product-item__content">
+        {/* <div className="product-item__image">
+          <Image contain imageUrl={Sampleimage} />
+        </div> */}
 
-          <div className="product-item__info">
-            <h2>{product.title}</h2>
-            <h3>{product.description}</h3>
-            <p> {product.price}</p>
-          </div>
+        <div className="product-item__info">
+          {/* <h2>{product.title}</h2>
+          <h3>{product.description}</h3>
+          <p> {product.price}</p> */}
+          <h2>Title</h2>
 
-          <Button
-            onClick={() =>
-              dispatch({ type: 'REMOVE_NOTE', title: product.title })
-            }
-          >
-            DELETE
-          </Button>
-        </Card>
-      </li>
-    </React.Fragment>
-  )
+        </div>
+
+        <Button
+
+        >
+          DELETE
+        </Button>
+      </Card>
+    </li>
+  );
 }
 
-export { ProductItem as default }
+export default ProductItem;
