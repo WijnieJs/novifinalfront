@@ -4,11 +4,12 @@ import Button from '../../Forms/Button'
 import './NavItems.css'
 
 const navItems = [
-  { id: 'addproduct', text: 'Add', link: '/new-product', auth: true },
-  { id: 'profile', text: 'Account', link: '/profile', auth: true },
-  { id: 'shop', text: 'Shop', link: '/products', auth: false },
+  { id: 'addproduct', text: 'Add', link: '/new-product', auth: false },
+  { id: 'profile', text: 'Account', link: '/profile', auth: false },
+  { id: 'favorites', text: 'Account', link: '/favorites', auth: false },
+  { id: 'shop', text: 'Products', link: '/products', auth: false },
   { id: 'login', text: 'Login', link: '/login', auth: false },
-  { id: 'home', text: 'Home', link: '/', auth: false },
+  { id: 'signup', text: 'Signup', link: '/signup', auth: false },
 
 ]
 

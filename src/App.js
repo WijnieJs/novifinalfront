@@ -1,16 +1,19 @@
-import React, { useEffect, useReducer, useState } from 'react'
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
+import React, { useState } from 'react'
 
+import Layout from "./components/Layout/Layout"
+import Toolbar from './components/Navigation/ToolBar/ToolBar'
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
-import Layout from './components/Layout/Layout'
-import ToolBar from './components/Navigation/ToolBar/ToolBar'
+import MainNav from "./components/Navigation/MainNav/MainNav"
 import MobileNav from './components/Navigation/MobileNav/MobileNav'
-import MainNav from './components/Navigation/MainNav/MainNav'
-import BackDrop from './components/UI-interfaces/Backdrop'
-import ProductPage from './pages/Product/ProductPage'
-import NewProduct from './pages/Product/NewProduct'
-import Home from './pages/Home/Home'
-
+import Backdrop from "./components/Interfaces/Backdrop/Backdrop"
+import Products from './pages/product/Products'
+import Home from "./pages/Home"
+import LoginPage from "./pages/auth/Login";
+import SignupPage from './pages/auth/Signup'
+import AuthState from "./shared/store/auth/AuthState"
+import AlertState from "./shared/store/alert/AlertState"
+import "./App.css"
 
 function App() {
   const [auth, setIsAuth] = useState(false)
@@ -21,8 +24,6 @@ function App() {
   })
   const { showBackdrop, showMobileNav, error } = navState
 
-
-
   const mobileNavHandler = (isOpen) => {
     setNavState({ showMobileNav: isOpen, showBackdrop: isOpen })
   }
@@ -30,102 +31,52 @@ function App() {
   const backdropClickHandler = () => {
     setNavState({ showBackdrop: false, showMobileNav: false, error: null })
   }
-
   const logoutHandler = () => {
-    // setAuth(false)
     console.log('Logout')
-    // localStorage.removeItem('token')
-    // localStorage.removeItem('expiryDate')
-    // localStorage.removeItem('userId')
   }
-
-  // useEffect(() => {
-  //   const products = JSON.parse(localStorage.getItem('products'))
-  //   console.log(products)
-
-  //   if (products) {
-  //     dispatch({ type: 'INIT_PRODUCTS', products })
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     const products = await fetchUsers()
-  //     console.log(products)
-  //     localStorage.setItem('products', JSON.stringify(products))
-  //   }
-  //   getProducts()
-  // }, [products])
-
-  // const loginHandler = (event, AuthData) => {
-  //   event.preventDefault()
-  //   setAuthLoading(true)
-  //   console.log(AuthData)
-
-  //   setAuthLoading(false)
-  // }
-
   let routes = (
-    <Switch>
-      <Route path="/" exact render={(props) => <Home {...props} />} />
-      <Route
-        path="/products"
-        exact
-        render={(props) => <ProductPage {...props} />}
-      />
-      <Route
-        path="/new-product"
-        exact
-        render={(props) => <NewProduct {...props} />}
-      />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<Home />} />
+
+      <Route path="/products" element={<Products />} />
+
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+
+    </Routes>
   )
-  // if (auth) {
-  //   routes = (
-  //     <Switch>
-  //       <Route
-  //         path="/new-product"
-  //         exact
-  //         render={(props) => <NewProduct {...props} />}
-  //       />
-  //     </Switch>
-  //   )
-  // }
   return (
-    <React.Fragment>
-
-
-      {showBackdrop && <BackDrop onClick={backdropClickHandler} />}
-
-      <Layout
-        header={
-          <ToolBar>
-            <MainNav
-              onOpenMobileNav={() => mobileNavHandler(true)}
-              onLogout={logoutHandler}
-              isAuth={auth}
+    <AuthState>
+      <AlertState>
+        <BrowserRouter>
+          <React.Fragment>
+            {showBackdrop && <Backdrop onClick={backdropClickHandler} />}
+            <Layout
+              header={
+                <Toolbar>
+                  <MainNav
+                    onOpenMobileNav={() => mobileNavHandler(true)}
+                    onLogout={logoutHandler}
+                    isAuth={auth}
+                  />
+                </Toolbar>
+              }
+              mobileNav={
+                <MobileNav
+                  open={showMobileNav}
+                  mobile
+                  onChooseItem={() => mobileNavHandler(false)}
+                  onLogout={logoutHandler}
+                  isAuth={auth}
+                />
+              }
             />
-          </ToolBar>
-        }
-        mobileNav={
-          <MobileNav
-            open={showMobileNav}
-            mobile
-            onChooseItem={() => mobileNavHandler(false)}
-            onLogout={logoutHandler}
-            isAuth={auth}
-          />
-        }
-      />
-      {routes}
+            {routes}
+          </React.Fragment>
+        </BrowserRouter>
+      </AlertState>
+    </AuthState>
 
-    </React.Fragment>
   )
 }
-
-/// ADDING ROUTES
-// ADDING ADD TO CART
-// ADD LOGIN
-// Add Checkout
-
-export default withRouter(App)
+export default App;

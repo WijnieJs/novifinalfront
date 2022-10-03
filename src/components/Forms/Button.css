@@ -1,4 +1,4 @@
-.button {
+.Button {
   font: inherit;
   border: 1px solid #3b0062;
   color: #3b0062;
@@ -9,11 +9,11 @@
   text-decoration: none;
 }
 
-.button:focus {
+.Button:focus {
   outline: none;
 }
 
-.button:disabled {
+.Button:disabled {
   background: #ccc;
   color: #888888;
   cursor: not-allowed;
@@ -21,117 +21,117 @@
   box-shadow: none;
 }
 
-.button:disabled:hover,
-.button:disabled:active {
+.Button:disabled:hover,
+.Button:disabled:active {
   background: #ccc;
   color: #888888;
   border: #ccc;
 }
 
-.button:hover,
-.button:active {
+.Button:hover,
+.Button:active {
   background: #3b0062;
   color: white;
 }
 
-.button--flat {
+.Button--flat {
   border: none;
 }
 
-.button--flat:hover,
-.button--flat:active {
+.Button--flat:hover,
+.Button--flat:active {
   background: rgba(59, 0, 98, 0.3);
   color: #3b0062;
 }
 
-.button--raised {
+.Button--raised {
   background: #3b0062;
   color: white;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
 }
 
-.button--raised:hover,
-.button--raised:active {
+.Button--raised:hover,
+.Button--raised:active {
   background: #520288;
 }
 
-.button.button--accent {
+.Button.Button--accent {
   border-color: #fab83f;
   color: #fab83f;
 }
 
-.button--accent:hover,
-.button--accent:active {
+.Button--accent:hover,
+.Button--accent:active {
   background: #fab83f;
   color: #3b0062;
 }
 
-.button--flat.button--accent:hover,
-.button--flat.button--accent:active {
+.Button--flat.Button--accent:hover,
+.Button--flat.Button--accent:active {
   background: rgba(250, 184, 63, 0.3);
   color: #fab83f;
 }
 
-.button.button--accent.button--raised {
+.Button.Button--accent.Button--raised {
   background: #fab83f;
   color: #3b0062;
 }
 
-.button--raised.button--accent:hover,
-.button--raised.button--accent:active {
+.Button--raised.Button--accent:hover,
+.Button--raised.Button--accent:active {
   background: #fbc766;
 }
 
-.button.button--danger {
+.Button.Button--danger {
   border-color: #a30000;
   color: #a30000;
 }
 
-.button--danger:hover,
-.button--danger:active {
+.Button--danger:hover,
+.Button--danger:active {
   background: #a30000;
   color: white;
 }
 
-.button--flat.button--danger:hover,
-.button--flat.button--danger:active {
+.Button--flat.Button--danger:hover,
+.Button--flat.Button--danger:active {
   background: rgba(163, 0, 0, 0.3);
   color: #a30000;
 }
 
-.button.button--danger.button--raised {
+.Button.Button--danger.Button--raised {
   background: #a30000;
   color: white;
 }
 
-.button--raised.button--danger:hover,
-.button--raised.button--danger:active {
+.Button--raised.Button--danger:hover,
+.Button--raised.Button--danger:active {
   background: #c00000;
 }
 
-.button.button--success {
+.Button.Button--success {
   border-color: #00b359;
   color: #00b359;
 }
 
-.button--success:hover,
-.button--success:active {
+.Button--success:hover,
+.Button--success:active {
   background: #00b359;
   color: white;
 }
 
-.button--flat.button--success:hover,
-.button--flat.button--success:active {
+.Button--flat.Button--success:hover,
+.Button--flat.Button--success:active {
   background: rgba(0, 179, 90, 0.3);
   color: #00b359;
 }
 
-.button.button--success.button--raised {
+.Button.Button--success.Button--raised {
   background: #00b359;
   color: white;
 }
 
-.button--raised.button--success:hover,
-.button--raised.button--success:active {
+.Button--raised.Button--success:hover,
+.Button--raised.Button--success:active {
   background: #00a151;
 }
