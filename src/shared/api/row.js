@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from './http-common';
+import ProductItem from "../../components/Products/ProductItem"
+
 
 const Row = ({ title, fetchUrl }) => {
   const [products, setProducts] = useState([])
@@ -16,9 +18,13 @@ const Row = ({ title, fetchUrl }) => {
   }, [fetchUrl])
 
   return (
-    <div>
+    <React.Fragment>
       <h2>{title}</h2>
-    </div>
+
+
+
+    </React.Fragment>
+
   );
 }
 

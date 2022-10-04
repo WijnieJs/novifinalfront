@@ -1,36 +1,32 @@
-import React from 'react';
-import Card from "../UI-interfaces/Card"
-import Image from "../UI-interfaces/Image"
-import Button from "../Forms/Button"
-
-import './ProductItem.css'
+import React, { useState, useContext } from 'react';
 
 
-import Sampleimage from '../../images/jsgreen.png'
+import Button from "../Button/Button"
+import Card from "../Card/Card";
+import "./ProductItem.css"
 
-const ProductItem = () => {
+
+
+const ProductItem = (props) => {
+  // const { price, description, title, imageURL } = props.product
+  console.log(props)
   return (
-    <li className="product-item">
-      <Card className="product-item__content">
-        {/* <div className="product-item__image">
-          <Image contain imageUrl={Sampleimage} />
-        </div> */}
+    <Card>
+      <header className="post__header">
+        <h3 className="post__meta">
+          add it hereee
+          {/* {props.author} on {props.date} */}
+        </h3>
+        {/* <h1 className="post__title">{props.title}</h1> */}
+      </header>
 
-        <div className="product-item__info">
-          {/* <h2>{product.title}</h2>
-          <h3>{product.description}</h3>
-          <p> {product.price}</p> */}
-          <h2>Title</h2>
-
-        </div>
-
-        <Button
-
-        >
-          DELETE
-        </Button>
-      </Card>
-    </li>
+      <React.Fragment>
+        {/* <Button inverse onClick={confirmDeleteHandler}>
+          VIEW
+        </Button> */}
+        <p>Some actions</p>
+      </React.Fragment>
+    </Card>
   );
 }
 

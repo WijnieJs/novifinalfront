@@ -1,37 +1,15 @@
-import { useEffect, useState } from 'react';
+// import { Fragment, useState, useEffect } from 'react';
 
-import Posts from "../components/Posts"
-import { getPosts } from "../api/product"
 
-function BlogPostsPage() {
-  const [error, setError] = useState();
-  const [posts, setPosts] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+// import requests from '../../shared/utils/requests';
 
-  useEffect(() => {
-    async function loadPosts() {
-      setIsLoading(true);
-      try {
-        const posts = await getPosts();
-        setPosts(posts);
-      } catch (err) {
-        setError(err.message);
-      }
-      setIsLoading(false);
-    }
+// function ProductDetailPage() {
 
-    loadPosts();
-  }, []);
+//   return (
+//     <>
+//       <h1>Our Blog Posts</h1>
+//     </>
+//   );
+// }
 
-  return (
-    <>
-      <h1>Our Blog Posts</h1>
-      {isLoading && <p>Loading posts...</p>}
-      {error && <p>{error}</p>}
-      {console.log(posts)}
-      {/* {!error && posts && <Posts blogPosts={posts} />} */}
-    </>
-  );
-}
-
-export default BlogPostsPage;
+// export default ProductDetailPage;

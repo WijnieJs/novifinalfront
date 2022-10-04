@@ -1,13 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import Button from '../../Forms/Button'
+
+import Button from "../../Button/Button"
+
 import './NavItems.css'
 
 const navItems = [
-  { id: 'addproduct', text: 'Add', link: '/new-product', auth: false },
-  { id: 'profile', text: 'Account', link: '/profile', auth: false },
-  { id: 'favorites', text: 'Account', link: '/favorites', auth: false },
-  { id: 'shop', text: 'Products', link: '/products', auth: false },
+  { id: 'addproduct', text: 'Add', link: '/new-product', auth: true },
+  { id: 'products', text: 'Shop', link: '/products', auth: false },
+  { id: 'favorites', text: 'Account', link: '/favorites', auth: true },
   { id: 'login', text: 'Login', link: '/login', auth: false },
   { id: 'signup', text: 'Signup', link: '/signup', auth: false },
 

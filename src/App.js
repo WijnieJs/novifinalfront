@@ -7,10 +7,15 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import MainNav from "./components/Navigation/MainNav/MainNav"
 import MobileNav from './components/Navigation/MobileNav/MobileNav'
 import Backdrop from "./components/Interfaces/Backdrop/Backdrop"
-import Products from './pages/product/Products'
+import ProductsRow from './pages/Product/ProductRow'
+import Products from './pages/Product/Products'
+
+import Productdetail from './pages/Product/ProductDetail'
+
+
 import Home from "./pages/Home"
-import LoginPage from "./pages/auth/Login";
-import SignupPage from './pages/auth/Signup'
+import Login from "./pages/Auth/Login";
+import Signup from './pages/Auth/Signup'
 import AuthState from "./shared/store/auth/AuthState"
 import AlertState from "./shared/store/alert/AlertState"
 import "./App.css"
@@ -38,10 +43,12 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
 
+      <Route path="/productsrow" element={<ProductsRow />} />
+      <Route path="/productDetail" element={<Productdetail />} />
       <Route path="/products" element={<Products />} />
 
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
 
     </Routes>
   )

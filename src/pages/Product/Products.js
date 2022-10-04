@@ -1,21 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Row from "../../shared/api/row"
-import requests from "../../shared/utils/requests"
+import axios from '../../shared/api/http-common';
+import requests from '../../shared/utils/requests';
+import ProductItem from '../../components/Products/ProductItem';
 
-import classes from "./Product.module.css"
+const ProductList = () => {
+  const [loadedProducts, setLoadedProducts] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
-const ProductsPage = () => {
-  const { withQuery } = requests;
-  { console.log("inhere") }
+  let fetchUrl = requests.fetchAllProducts;
+  useEffect(() => {
+    async function fetchData() {
+      const req = await axios.get(fetchUrl);
+
+      setLoadedProducts(req.data);
+      return req;
+    }
+    fetchData();
+  }, [fetchUrl]);
+
   return (
-    <div className={classes.home}>
-      <h5>Hi we learning new thing</h5>
-      <Row title="newline" fetchUrl={requests.fetchAllProducts}> </Row>
-      <Row title="secondline" fetchUrl={withQuery(requests.fetchByTitle, "char")}> </Row>
+    <React.Fragment>
+      <h1>Error</h1>
+      {isLoading && (
+        <div className="center">
+          <h3>Loading</h3>
+        </div>
+      )}
+      {!isLoading && loadedProducts && (
+        <ProductList items={loadedProducts}
+          handler={() => console.log("log")} />
+      )}
 
-    </div>
-  )
-}
+      <ProductItem />
+    </React.Fragment>
+  );
+};
 
-export default ProductsPage
+export default ProductList;

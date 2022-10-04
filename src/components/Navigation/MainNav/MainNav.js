@@ -9,24 +9,23 @@ import './MainNav.css'
 
 const MainNav = (props) => {
 
-  const [show, handleshow] = useState(false)
+  // const [show, handleshow] = useState(false)
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 100) {
-        handleshow(true)
-      } else handleshow(false);
-    });
-    return () => {
-      window.removeEventListener("scroll")
-    }
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => {
+  //     if (window.scrollY > 100) {
+  //       handleshow(true)
+  //     } else handleshow(false);
+  //   });
+  //   return () => {
+  //     window.removeEventListener("scroll")
+  //   }
+  // }, []);
 
 
 
   return (
     <nav className="main-nav">
-
       <MobileHandler onOpen={props.onOpenMobileNav} />
       <div className="main-nav__logo">
         <NavLink to="/">
