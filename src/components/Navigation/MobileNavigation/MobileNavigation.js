@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-import NavItems from '../NavItems/NavItems'
-import './MobileNav.css'
+import NavigationItems from '../NavigationItems/NavigationItems';
+import './MobileNavigation.css';
 
-const MobileNav = (props) => (
+const mobileNavigation = props => (
   <nav className={['mobile-nav', props.open ? 'open' : ''].join(' ')}>
     <ul
       className={['mobile-nav__items', props.mobile ? 'mobile' : ''].join(' ')}
     >
-      <NavItems
+      <NavigationItems
         mobile
         onChoose={props.onChooseItem}
         isAuth={props.isAuth}
@@ -16,6 +16,6 @@ const MobileNav = (props) => (
       />
     </ul>
   </nav>
-)
+);
 
-export default MobileNav
+export default mobileNavigation;

@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 
 import Layout from "./components/Layout/Layout"
-import Toolbar from './components/Navigation/ToolBar/ToolBar'
+
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
-import MainNav from "./components/Navigation/MainNav/MainNav"
-import MobileNav from './components/Navigation/MobileNav/MobileNav'
+import MainNavigation from "./components/Navigation/MainNavigation/MainNavigation"
+import MobileNav from './components/Navigation/MobileNavigation/MobileNavigation'
 import Backdrop from "./components/Interfaces/Backdrop/Backdrop"
 import ProductsRow from './pages/Product/ProductRow'
 import Products from './pages/Product/Products'
+import Toolbar from './components/Toolbar/Toolbar'
 
 import Productdetail from './pages/Product/ProductDetail'
 
 
 import Home from "./pages/Home"
-import Login from "./pages/Auth/Login";
+import Auth from "./pages/Auth/Auth";
 import Signup from './pages/Auth/Signup'
 import AuthState from "./shared/store/auth/AuthState"
 import AlertState from "./shared/store/alert/AlertState"
@@ -47,7 +48,7 @@ function App() {
       <Route path="/productDetail" element={<Productdetail />} />
       <Route path="/products" element={<Products />} />
 
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Auth />} />
       <Route path="/signup" element={<Signup />} />
 
     </Routes>
@@ -61,7 +62,7 @@ function App() {
             <Layout
               header={
                 <Toolbar>
-                  <MainNav
+                  <MainNavigation
                     onOpenMobileNav={() => mobileNavHandler(true)}
                     onLogout={logoutHandler}
                     isAuth={auth}

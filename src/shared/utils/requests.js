@@ -4,7 +4,7 @@ const requests = {
   fetchByTags: `/public/getByTags/`,
   fetchById: `/public/productById/`,
   fetchAllProducts: '/public/allProductsInShop/',
-
+  signUp: '/auth/signUp',
   withQuery: (route, id) => route.concat(id)
 
 }

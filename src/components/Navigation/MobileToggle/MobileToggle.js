@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-import './MobileHandler.css'
+import './MobileToggle.css';
 
-const MobileHandler = (props) => (
+const mobileToggle = props => (
   <button className="mobile-toggle" onClick={props.onOpen}>
     <span className="mobile-toggle__bar" />
     <span className="mobile-toggle__bar" />
     <span className="mobile-toggle__bar" />
   </button>
-)
+);
 
-export default MobileHandler
+export default mobileToggle;

@@ -1,7 +1,72 @@
-import React from 'react';
+import { useState, useRef, useContext } from 'react';
+import axios from '../../shared/api/http-common';
+import requests from '../../shared/utils/requests';
 
-import './Auth.css';
+let fetchUrl = requests.signUp;
 
-const auth = props => <section className="auth-form">{props.children}</section>;
 
-export default auth;
+const Auth = () => {
+  const usernameInputRef = useRef();
+  const passwordInputRef = useRef();
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
+    const enteredusername = usernameInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+    console.log(enteredusername)
+    console.log(enteredPassword)
+    const formData = {
+      username: enteredusername,
+      password: enteredPassword
+    }
+    const result = await axios.post('http://localhost:8080/api/auth/signin', formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+      })
+
+
+    console.log(result);
+    // setIsLoading(true);
+
+
+
+  };
+
+
+
+  return (
+    <div>
+      <h1>{'Login / Sign Up'}</h1>
+      <form onSubmit={submitHandler}>
+        <div className="form-controll">
+          <div className='control'>
+            <label htmlFor='email'>Your Username</label>
+
+            <input
+              type="text"
+              id="username"
+              required
+              ref={usernameInputRef} />
+          </div>
+          <div className='control'>
+            <label htmlFor='email'>Your Password</label>
+
+            <input
+              type='password'
+              id='password'
+              required
+              ref={passwordInputRef}
+            />
+          </div>
+        </div>
+        <button>SEND</button>
+      </form>
+
+    </div>
+  );
+}
+
+export default Auth;
