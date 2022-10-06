@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import axios from '../../shared/api/http-common';
 import requests from '../../shared/utils/requests';
 import ProductItem from '../../components/Products/ProductItem';
 
 const ProductList = () => {
+
   const [loadedProducts, setLoadedProducts] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +22,7 @@ const ProductList = () => {
 
   return (
     <React.Fragment>
-      <h1>Error</h1>
+
       {isLoading && (
         <div className="center">
           <h3>Loading</h3>

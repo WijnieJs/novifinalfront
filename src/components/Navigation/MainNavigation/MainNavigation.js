@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import MobileToggle from '../MobileToggle/MobileToggle';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
+import { GlobalContext } from '../../../shared/store/GlobalState';
 
 import './MainNavigation.css';
 
-const mainNavigation = props => (
-  <nav className="main-nav">
-    <MobileToggle onOpen={props.onOpenMobileNav} />
-    <div className="main-nav__logo">
-      <NavLink to="/">
-        <Logo />
-      </NavLink>
-    </div>
-    <div className="spacer" />
-    <ul className="main-nav__items">
-      <NavigationItems isAuth={props.isAuth} onLogout={props.onLogout} />
-    </ul>
-  </nav>
-);
+const mainNavigation = (props) => {
+   return (
+      <nav className='main-nav'>
+         <MobileToggle onOpen={props.onOpenMobileNav} />
+         <div className='main-nav__logo'>
+            <NavLink to='/'>
+               <Logo />
+            </NavLink>
+         </div>
+         <div className='spacer' />
+         <ul className='main-nav__items'>
+            <NavigationItems
+               isAuth={props.isAuth}
+               onLogout={props.onLogout}
+               isAdmin={props.admin}
+               isMod={props.mod}
+            />
+         </ul>
+      </nav>
+   );
+};
 
 export default mainNavigation;

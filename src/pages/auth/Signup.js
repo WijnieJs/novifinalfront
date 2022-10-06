@@ -11,6 +11,7 @@ const Auth = () => {
   const emailInputRef = useRef();
 
 
+
   const submitHandler = async (event) => {
     event.preventDefault();
     const enteredemail = emailInputRef.current.value;

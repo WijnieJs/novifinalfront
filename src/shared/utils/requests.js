@@ -5,6 +5,7 @@ const requests = {
   fetchById: `/public/productById/`,
   fetchAllProducts: '/public/allProductsInShop/',
   signUp: '/auth/signUp',
+  adminRoute: 'api/admin/auth/admin',
   withQuery: (route, id) => route.concat(id)
 
 }

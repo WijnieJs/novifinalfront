@@ -1,38 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import UsersList from '../components/UsersList';
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import { useHttpClient } from '../../shared/hooks/http-hook';
+export const useHttp = (url, dependencies) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchedData, setFetchedData] = useState(null);
 
-const Users = () => {
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [loadedUsers, setLoadedUsers] = useState();
-
+  //   fetch('https://swapi.co/api/people')
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const responseData = await sendRequest(
-          'http://localhost:5000/api/users'
-        );
+    setIsLoading(true);
+    console.log('Sending Http request to URL: ' + url);
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setIsLoading(false);
+        setFetchedData(data);
+      })
+      .catch(err => {
+        console.log(err);
+        setIsLoading(false);
+      });
+  }, dependencies);
 
-        setLoadedUsers(responseData.users);
-      } catch (err) { }
-    };
-    fetchUsers();
-  }, [sendRequest]);
-
-  return (
-    <React.Fragment>
-      <ErrorModal error={error} onClear={clearError} />
-      {isLoading && (
-        <div className="center">
-          <LoadingSpinner />
-        </div>
-      )}
-      {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
-    </React.Fragment>
-  );
+  return [isLoading, fetchedData];
 };
-
-export default Users;
