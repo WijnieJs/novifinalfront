@@ -3,34 +3,38 @@ import AppReducer from './Reducer';
 
 // Initial state
 const initialState = {
-  user: {}
-}
+   favorites: [],
+   totalAmount: 0
+};
 export const GlobalContext = createContext(initialState);
 
 // Provider component
 export const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  function deleteFavorite(id) {
-    dispatch({
-      type: 'DELETE_FAVORITE',
-      payload: id
-    });
-  }
+   function deleteFavorite(id) {
+      dispatch({
+         type: 'DELETE_FAVORITE',
+         payload: id
+      });
+   }
 
-  function setUser(user) {
-    dispatch({
-      type: 'SET_USER',
-      payload: user
-    });
-  }
+   function addFavorite(transaction) {
+      dispatch({
+         type: 'ADD_FAVORITE',
+         payload: transaction
+      });
+   }
 
-  return (<GlobalContext.Provider value={{
-    user: state.user,
-    deleteFavorite,
-    setUser
-  }}>
-    {children}
-  </GlobalContext.Provider>);
-
-}
+   return (
+      <GlobalContext.Provider
+         value={{
+            favorites: state.favorites,
+            deleteFavorite,
+            addFavorite
+         }}
+      >
+         {children}
+      </GlobalContext.Provider>
+   );
+};

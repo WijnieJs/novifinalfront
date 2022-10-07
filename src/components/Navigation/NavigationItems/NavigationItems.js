@@ -12,7 +12,7 @@ let navItems = [
    { id: 'signup', text: 'Signup', link: '/signup', auth: false },
 
    // User auth routes
-   { id: 'cart', text: 'Cart', link: '/cart', auth: true },
+   { id: 'cart', text: 'Cart', link: '/cart', auth: false },
    { id: 'sales', text: 'Sales', link: '/productsrow', auth: true },
    {
       id: 'detail',

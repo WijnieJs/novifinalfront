@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Button from '../Button/Button';
 import Image from '../Image/Image';
@@ -6,7 +6,7 @@ import Image from '../Image/Image';
 import placeHolderImage from '../../shared/images/devh.jpg';
 import './Product.css';
 
-const product = (props) => {
+const Product = (props) => {
    return (
       <>
          <div className='product'>
@@ -18,7 +18,7 @@ const product = (props) => {
                <div className='product__content'>{props.content}</div>
             </div>
             <div className='product__actions'>
-               <Button mode='raised' link={props.id}>
+               <Button mode='raised' onClick={() => console.log('')}>
                   Add
                </Button>
                {/* <Button mode='flat' onClick={props.onStartEdit}>
@@ -37,4 +37,4 @@ const product = (props) => {
    );
 };
 
-export default product;
+export default Product;

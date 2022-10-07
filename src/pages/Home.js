@@ -1,17 +1,10 @@
 import React, { useContext } from 'react';
 
 import { GlobalContext } from '../shared/store/GlobalState';
+import NotesContext from '../shared/store/notes-context';
 
 const Home = () => {
-
-
-
-  return (
-    <div>
-
-      <h1>Home</h1>
-    </div>
-  );
-}
+   return <div></div>;
+};
 
 export default Home;

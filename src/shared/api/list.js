@@ -2,12 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from './http-common';
 import Product from '../../components/Product/Product';
 
-import { GlobalContext } from '../store/GlobalState';
 import './productslist.css';
 const Single = ({ title, fetchUrl }) => {
-   const [isLoading, setIsLoading] = useState(true);
    const [products, setProducts] = useState([]);
-   const { addFavorite } = useContext(GlobalContext);
 
    useEffect(() => {
       async function fetchData() {

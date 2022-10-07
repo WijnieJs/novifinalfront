@@ -10,7 +10,7 @@ import Button from '../../components/Button/Button';
 import requests from '../../shared/utils/requests';
 import axios from '../../shared/api/http-common';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
-
+import Auth from '../Auth/Auth';
 const NewProduct = () => {
    const { withQuery } = requests;
    const navigate = useNavigate();
@@ -87,7 +87,9 @@ const NewProduct = () => {
    };
 
    return (
-      <>
+      <Auth>
+         <h2>Edit this Product</h2>
+
          <ErrorHandler
             error={error}
             onHandle={errorAcceptHandler}
@@ -135,7 +137,7 @@ const NewProduct = () => {
                </Button>
             </form>
          )}
-      </>
+      </Auth>
    );
 };
 

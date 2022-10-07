@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from './http-common';
-import Product from '../../components/Product/Product';
-
-import { GlobalContext } from '../store/GlobalState';
 
 const Single = ({ title, fetchUrl }) => {
+   console.log('been hee');
    const [product, setProduct] = useState([]);
-   const { addFavorite } = useContext(GlobalContext);
 
    useEffect(() => {
       async function fetchData() {
@@ -33,7 +30,7 @@ const Single = ({ title, fetchUrl }) => {
          <div>
             <button
                style={{ padding: '30px' }}
-               onClick={() => addFavorite(product)}
+               onClick={() => console.log('dispatch add t')}
             >
                ADD TO FAVORITES
             </button>

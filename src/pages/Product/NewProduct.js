@@ -7,6 +7,7 @@ import { useForm } from '../../shared/utils/form-hook';
 import Input from '../../components/Form/Input';
 import { VALIDATOR_REQUIRE } from '../../shared/utils/validators';
 import Button from '../../components/Button/Button';
+import Auth from '../Auth/Auth';
 
 const NewProduct = () => {
    const navigate = useNavigate();
@@ -57,7 +58,8 @@ const NewProduct = () => {
    };
 
    return (
-      <>
+      <Auth>
+         <h2>Add a new Product</h2>
          <ErrorHandler
             error={error}
             onHandle={errorAcceptHandler}
@@ -96,7 +98,7 @@ const NewProduct = () => {
                ADD
             </Button>
          </form>
-      </>
+      </Auth>
    );
 };
 

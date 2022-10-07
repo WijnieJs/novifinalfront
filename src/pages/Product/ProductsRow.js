@@ -6,10 +6,6 @@ import requests from '../../shared/utils/requests';
 
 const ProductsRow = () => {
    const { withQuery } = requests;
-
-   {
-      console.log('inhere');
-   }
    return (
       <div className=''>
          <h5>Hi we learning new thing</h5>

@@ -1,18 +1,17 @@
 import React, { useContext } from 'react';
-import { GlobalContext } from '../store/GlobalState';
-
+import { GlobalContext } from '../shared/store/GlobalState';
+import NotesContext from '../shared/store/notes-context';
 const Favorites = () => {
+   const { favorites } = useContext(GlobalContext);
+   const { notes } = useContext(NotesContext);
 
-  const { favorites } = useContext(GlobalContext);
-
-  return (
-    <div>
-      <h1>In state</h1>
-      {favorites && (
-        <h4>{favorites}</h4>
-      )}
-    </div>
-  );
-}
+   console.log(notes);
+   return (
+      <div>
+         <h1>In state</h1>
+         {notes && <h4>{favorites.id}</h4>}
+      </div>
+   );
+};
 
 export default Favorites;

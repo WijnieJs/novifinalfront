@@ -33,6 +33,7 @@ import './App.css';
 import NoteApp from './pages/notes/NoteApp';
 import NewProduct from './pages/Product/NewProduct';
 import EditProduct from './pages/Product/EditProduct';
+import Favorites from './pages/Favorites';
 
 function App() {
    const [notes, dispatch] = useReducer(notesReducer, []);
@@ -99,6 +100,7 @@ function App() {
          <Route path='/allproducts' element={<ProductList />} />
          <Route path='/newproduct' element={<NewProduct />} />
          <Route path='/edit' element={<EditProduct />} />
+         <Route path='/cart' element={<Favorites />} />
 
          <Route path='/admin' element={<Admin />} />
          <Route path='/login' element={<Login />} />
@@ -143,6 +145,7 @@ function App() {
                         />
                      }
                   />
+                  <Home />
                   {routes}
                </React.Fragment>
             </BrowserRouter>
