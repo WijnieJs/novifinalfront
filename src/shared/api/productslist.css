@@ -1,0 +1,14 @@
+.card_list_grid {
+        display: grid;
+  grid-template-columns: 44vw 44vw;
+  grid-gap: 10px;
+ 
+}
+
+@media (min-width: 768px) {
+  .card_list_grid {
+     display: grid;
+     grid-template-columns: 270px 270px 270px 270px;
+    grid-gap: 30px;
+  }
+}

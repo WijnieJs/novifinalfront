@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from './http-common';
+import Product from '../../components/Product/Product';
+
 // const response = await axios.get('http://localhost:3000/660/private-content', {
 //   headers: {
 //     "Content-Type": "application/json",

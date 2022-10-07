@@ -51,12 +51,9 @@ const Log = (props) => {
          navigate('/');
          window.location.reload();
       } catch (error) {
-         console.log(error);
          if (error.response.data) {
             console.log(Object.values(error.response.data));
-
             setErrorMessage(Object.values(error.response.data));
-            console.log(error.response.data);
             setError(true);
          }
       }

@@ -14,11 +14,12 @@ import MobileNav from './components/Navigation/MobileNavigation/MobileNavigation
 
 import Backdrop from './components/Backdrop/Backdrop';
 
-import ProductsRow from './pages/Product/ProductRow';
-import Products from './pages/Product/Products';
+import ProductsRow from './pages/Product/ProductsRow';
+import ProductList from './pages/Product/ProductList';
+import ProductSingle from './pages/Product/ProductSingle';
+
 import Admin from './pages/Admin';
 import Toolbar from './components/Toolbar/Toolbar';
-import Productdetail from './pages/Product/ProductDetail';
 import Home from './pages/Home';
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
@@ -30,6 +31,8 @@ import AuthActions from './shared/store/AuthActions';
 import './App.css';
 
 import NoteApp from './pages/notes/NoteApp';
+import NewProduct from './pages/Product/NewProduct';
+import EditProduct from './pages/Product/EditProduct';
 
 function App() {
    const [notes, dispatch] = useReducer(notesReducer, []);
@@ -92,9 +95,11 @@ function App() {
       <Routes>
          <Route path='/' element={<Home />} />
          <Route path='/productsrow' element={<ProductsRow />} />
-         <Route path='/productsrow' element={<ProductsRow />} />
-         <Route path='/productDetail' element={<Productdetail />} />
-         <Route path='/products' element={<Products />} />
+         <Route path='/productdetail' element={<ProductSingle />} />
+         <Route path='/allproducts' element={<ProductList />} />
+         <Route path='/newproduct' element={<NewProduct />} />
+         <Route path='/edit' element={<EditProduct />} />
+
          <Route path='/admin' element={<Admin />} />
          <Route path='/login' element={<Login />} />
          <Route path='/signup' element={<Signup />} />

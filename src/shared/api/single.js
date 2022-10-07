@@ -3,17 +3,16 @@ import axios from './http-common';
 import Product from '../../components/Product/Product';
 
 import { GlobalContext } from '../store/GlobalState';
-import './productslist.css';
+
 const Single = ({ title, fetchUrl }) => {
-   const [isLoading, setIsLoading] = useState(true);
-   const [products, setProducts] = useState([]);
+   const [product, setProduct] = useState([]);
    const { addFavorite } = useContext(GlobalContext);
 
    useEffect(() => {
       async function fetchData() {
          const req = await axios.get(fetchUrl);
          console.log(req.data);
-         setProducts(req.data);
+         setProduct(req.data);
          return req;
       }
 
@@ -23,20 +22,21 @@ const Single = ({ title, fetchUrl }) => {
    return (
       <React.Fragment>
          <h2>{title}</h2>
-         {console.log(products)}
-         <div className='card_list_grid'>
-            {products.map((prod) => (
-               <Product
-                  key={prod.id}
-                  id={prod.id}
-                  title={prod.title}
-                  price={prod.price}
-                  tags={prod.tags}
-                  content={prod.description}
-                  onStartEdit={() => console.log('aaa')}
-                  onDelete={() => console.log('aaa')}
-               />
+
+         <h3>{product.description}</h3>
+         <h3>{product.price}</h3>
+         {product.tags &&
+            product.tags.map((tag) => (
+               <section key={product.id}>{tag}</section>
             ))}
+
+         <div>
+            <button
+               style={{ padding: '30px' }}
+               onClick={() => addFavorite(product)}
+            >
+               ADD TO FAVORITES
+            </button>
          </div>
       </React.Fragment>
    );
