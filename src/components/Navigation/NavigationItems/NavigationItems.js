@@ -5,9 +5,9 @@ import './NavigationItems.css';
 
 let navItems = [
    { id: 'list', text: 'List', link: '/products', auth: false },
+   { id: 'feed', text: 'Feed', link: '/feed', auth: false },
    { id: 'login', text: 'Login', link: '/login', auth: false },
    { id: 'signup', text: 'Signup', link: '/signup', auth: false },
-   { id: 'feed', text: 'Feed', link: '/', auth: false },
 
    // User auth routes
    { id: 'cart', text: 'Cart', link: '/cart', auth: true },

@@ -17,7 +17,7 @@ import Auth from './Auth';
 const Log = (props) => {
    const navigate = useNavigate();
    const [error, setError] = useState(false);
-   const [errorMessage, setErrorMessage] = useState([]);
+   const [errorMessage, setErrorMessage] = useState('');
 
    const [formState, inputHandler, setFormData] = useForm(
       {
@@ -26,10 +26,6 @@ const Log = (props) => {
             isValid: false
          },
          password: {
-            value: '',
-            isValid: false
-         },
-         email: {
             value: '',
             isValid: false
          }
@@ -42,21 +38,17 @@ const Log = (props) => {
       console.log(formState.inputs);
       const formData = {
          username: formState.inputs.username.value,
-         email: formState.inputs.email.value,
          password: formState.inputs.password.value
       };
       try {
-         await AuthActions.register(formData);
+         await AuthActions.login(formData);
          console.log('here');
          navigate('/');
          window.location.reload();
       } catch (error) {
-         console.log(error);
-         if (error.response.data) {
-            console.log(Object.values(error.response.data));
+         if (error.response.status === 401) {
+            setErrorMessage('Inserted wrong Credentials');
 
-            setErrorMessage(Object.values(error.response.data));
-            console.log(error.response.data);
             setError(true);
          }
       }
@@ -72,15 +64,6 @@ const Log = (props) => {
             msg={errorMessage}
          />
          <form onSubmit={submitHandler}>
-            <Input
-               element='input'
-               id='email'
-               type='email'
-               label='E-Mail'
-               validators={[VALIDATOR_EMAIL()]}
-               errorText='Please enter a valid email address.'
-               onInput={inputHandler}
-            />
             <Input
                element='input'
                id='username'
@@ -100,7 +83,7 @@ const Log = (props) => {
                onInput={inputHandler}
             />
             <Button type='submit' disabled={!formState.isValid}>
-               Signup
+               Login
             </Button>
          </form>
       </Auth>

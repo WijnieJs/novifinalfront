@@ -21,11 +21,18 @@ const logout = () => {
 const getCurrentUser = () => {
    return JSON.parse(localStorage.getItem('user'));
 };
+const register = (formData) => {
+   return axios.post(
+      'http://localhost:8080/api/auth/signup',
+      formData
+   );
+};
 
 const AuthActions = {
    login,
    logout,
-   getCurrentUser
+   getCurrentUser,
+   register
 };
 
 export default AuthActions;

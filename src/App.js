@@ -12,15 +12,15 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import MainNavigation from './components/Navigation/MainNavigation/MainNavigation';
 import MobileNav from './components/Navigation/MobileNavigation/MobileNavigation';
 
-import Backdrop from './components/Interfaces/Backdrop/Backdrop';
-import Button from './components/Button/Button';
+import Backdrop from './components/Backdrop/Backdrop';
+
 import ProductsRow from './pages/Product/ProductRow';
 import Products from './pages/Product/Products';
 import Admin from './pages/Admin';
 import Toolbar from './components/Toolbar/Toolbar';
 import Productdetail from './pages/Product/ProductDetail';
 import Home from './pages/Home';
-import Auth from './pages/Auth/Auth';
+import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
 import { GlobalProvider } from './shared/store/GlobalState';
 import NotesContext from './shared/store/notes-context';
@@ -96,7 +96,7 @@ function App() {
          <Route path='/productDetail' element={<Productdetail />} />
          <Route path='/products' element={<Products />} />
          <Route path='/admin' element={<Admin />} />
-         <Route path='/login' element={<Auth />} />
+         <Route path='/login' element={<Login />} />
          <Route path='/signup' element={<Signup />} />
       </Routes>
    );
