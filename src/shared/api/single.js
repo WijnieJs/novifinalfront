@@ -16,6 +16,8 @@ const Single = ({ title, fetchUrl }) => {
       fetchData();
    }, [fetchUrl]);
 
+
+
    return (
       <React.Fragment>
          <h2>{title}</h2>
