@@ -18,7 +18,10 @@ const Product = (props) => {
                <div className='product__content'>{props.content}</div>
             </div>
             <div className='product__actions'>
-               <Button mode='raised' onClick={() => console.log('')}>
+               <Button
+                  mode='raised'
+                  onClick={() => console.log(props.id)}
+               >
                   Add
                </Button>
                {/* <Button mode='flat' onClick={props.onStartEdit}>
