@@ -23,7 +23,6 @@ import Toolbar from './components/Toolbar/Toolbar';
 import Home from './pages/Home';
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
-import { GlobalProvider } from './shared/store/GlobalState';
 import NotesContext from './shared/store/notes-context';
 import notesReducer from './shared/store/notes';
 import EventBus from './common/EventBus';
@@ -33,7 +32,6 @@ import './App.css';
 import NoteApp from './pages/notes/NoteApp';
 import NewProduct from './pages/Product/NewProduct';
 import EditProduct from './pages/Product/EditProduct';
-import Favorites from './pages/Favorites';
 
 function App() {
    const [notes, dispatch] = useReducer(notesReducer, []);
@@ -96,11 +94,14 @@ function App() {
       <Routes>
          <Route path='/' element={<Home />} />
          <Route path='/productsrow' element={<ProductsRow />} />
-         <Route path='/productdetail' element={<ProductSingle />} />
+         <Route
+            path='/productdetail/:id'
+            element={<ProductSingle />}
+         />
          <Route path='/allproducts' element={<ProductList />} />
          <Route path='/newproduct' element={<NewProduct />} />
          <Route path='/edit' element={<EditProduct />} />
-         <Route path='/cart' element={<Favorites />} />
+         {/* <Route path='/cart' element={<Favorites />} /> */}
 
          <Route path='/admin' element={<Admin />} />
          <Route path='/login' element={<Login />} />
@@ -110,46 +111,42 @@ function App() {
 
    return (
       <NotesContext.Provider value={{ notes, dispatch }}>
-         <GlobalProvider>
-            <BrowserRouter>
-               <React.Fragment>
-                  {showBackdrop && (
-                     <Backdrop onClick={backdropClickHandler} />
-                  )}
-                  <Layout
-                     header={
-                        <Toolbar>
-                           <MainNavigation
-                              onOpenMobileNav={() =>
-                                 mobileNavHandler(true)
-                              }
-                              onLogout={logOut}
-                              mod={showModeratorBoard}
-                              admin={showAdminBoard}
-                              isAuth={isAuth}
-                           />
-                        </Toolbar>
-                     }
-                     mobileNav={
-                        <MobileNav
-                           open={showMobileNav}
-                           mobile
-                           onChooseItem={() =>
-                              mobileNavHandler(false)
+         <BrowserRouter>
+            <React.Fragment>
+               {showBackdrop && (
+                  <Backdrop onClick={backdropClickHandler} />
+               )}
+               <Layout
+                  header={
+                     <Toolbar>
+                        <MainNavigation
+                           onOpenMobileNav={() =>
+                              mobileNavHandler(true)
                            }
                            onLogout={logOut}
                            mod={showModeratorBoard}
                            admin={showAdminBoard}
-                           // user={currentUser}
                            isAuth={isAuth}
                         />
-                     }
-                  />
-                  <Home />
-                  {routes}
-               </React.Fragment>
-            </BrowserRouter>
-         </GlobalProvider>
+                     </Toolbar>
+                  }
+                  mobileNav={
+                     <MobileNav
+                        open={showMobileNav}
+                        mobile
+                        onChooseItem={() => mobileNavHandler(false)}
+                        onLogout={logOut}
+                        mod={showModeratorBoard}
+                        admin={showAdminBoard}
+                        // user={currentUser}
+                        isAuth={isAuth}
+                     />
+                  }
+               />
+               <Home />
+               {routes}
+            </React.Fragment>
+         </BrowserRouter>
       </NotesContext.Provider>
    );
 }

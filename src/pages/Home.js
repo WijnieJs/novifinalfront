@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 
-import { GlobalContext } from '../shared/store/GlobalState';
 import NotesContext from '../shared/store/notes-context';
 
 const Home = () => {
+   const notes = useContext(NotesContext);
+   console.log(notes);
    return <div></div>;
 };
 

@@ -2,11 +2,31 @@ import React, { useContext } from 'react';
 
 import Button from '../Button/Button';
 import Image from '../Image/Image';
-
 import placeHolderImage from '../../shared/images/devh.jpg';
 import './Product.css';
-
+import ProductActions from '../../shared/store/ProductActions';
+import NotesContext from '../../shared/store/notes-context';
 const Product = (props) => {
+   const { dispatch } = useContext(NotesContext);
+
+   const addToCartHandler = async () => {
+      try {
+         const res = await ProductActions.getById(2);
+         console.log(res.data);
+         const prod = res.data;
+         prod.amount = 1;
+         dispatch({
+            type: 'ADD_NOTE',
+            product: prod
+         });
+         return res;
+      } catch (err) {
+         console.log(err);
+      }
+
+      // navigate(`/productdetail/${2}`);
+   };
+
    return (
       <>
          <div className='product'>
@@ -20,7 +40,7 @@ const Product = (props) => {
             <div className='product__actions'>
                <Button
                   mode='raised'
-                  onClick={() => console.log(props.id)}
+                  onClick={() => addToCartHandler()}
                >
                   Add
                </Button>

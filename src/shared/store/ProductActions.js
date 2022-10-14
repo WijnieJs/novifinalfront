@@ -20,9 +20,19 @@ const edit = (formData) => {
    );
 };
 
+const getById = (id) => {
+   const res = axios.get(
+      `http://localhost:8080/api/public/productById/${id}`
+   );
+
+   return res;
+};
+
 const ProductActions = {
    add,
-   edit
+   edit,
+
+   getById
 };
 
 export default ProductActions;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from './http-common';
 
-const Single = ({ title, fetchUrl }) => {
-   console.log('been hee');
+const Single = ({ title, fetchUrl }, props) => {
+   console.log(props);
    const [product, setProduct] = useState([]);
 
    useEffect(() => {
@@ -15,8 +15,6 @@ const Single = ({ title, fetchUrl }) => {
 
       fetchData();
    }, [fetchUrl]);
-
-
 
    return (
       <React.Fragment>

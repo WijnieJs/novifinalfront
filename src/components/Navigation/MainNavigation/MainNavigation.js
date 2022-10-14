@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import MobileToggle from '../MobileToggle/MobileToggle';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
-import { GlobalContext } from '../../../shared/store/GlobalState';
 
 import './MainNavigation.css';
 

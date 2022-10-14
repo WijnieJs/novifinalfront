@@ -6,10 +6,7 @@ const notesReducer = (state, action) => {
          return [
             ...state,
             {
-               title: action.title,
-               body: action.body,
-               prodId: action.prodId,
-               price: action.price
+               product: { ...action.product }
             }
          ];
       case 'REMOVE_NOTE':

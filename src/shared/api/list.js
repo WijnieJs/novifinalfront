@@ -30,7 +30,7 @@ const Single = ({ title, fetchUrl }) => {
                   price={prod.price}
                   tags={prod.tags}
                   content={prod.description}
-                  onStartEdit={() => console.log('aaa')}
+                  onStartEdit={() => console.log(prod.id)}
                   onDelete={() => console.log('aaa')}
                />
             ))}
