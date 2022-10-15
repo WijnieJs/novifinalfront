@@ -6,12 +6,21 @@ import placeHolderImage from '../../shared/images/devh.jpg';
 import './Product.css';
 import ProductActions from '../../shared/store/ProductActions';
 import NotesContext from '../../shared/store/notes-context';
+import { useNavigate } from 'react-router-dom';
+
 const Product = (props) => {
    const { dispatch } = useContext(NotesContext);
+   let navigate = useNavigate();
 
-   const addToCartHandler = async () => {
+   function navme(id) {
+      console.log(id);
+      navigate(`/productdetail/${id}`);
+   }
+
+   const addToCartHandler = async (id) => {
       try {
-         const res = await ProductActions.getById(2);
+         console.log(id);
+         const res = await ProductActions.getById(id);
          console.log(res.data);
          const prod = res.data;
          prod.amount = 1;
@@ -40,20 +49,20 @@ const Product = (props) => {
             <div className='product__actions'>
                <Button
                   mode='raised'
-                  onClick={() => addToCartHandler()}
+                  onClick={() => addToCartHandler(props.id)}
                >
                   Add
                </Button>
-               {/* <Button mode='flat' onClick={props.onStartEdit}>
+               {/* {/* <Button mode='flat' onClick={props.onStartEdit}>
                      Edit
-                  </Button>
-                  <Button
-                     mode='flat'
-                     design='danger'
-                     onClick={props.onDelete}
-                  >
-                     Delete
                   </Button> */}
+               <Button
+                  mode='raised'
+                  design='accent'
+                  onClick={() => navme(props.id)}
+               >
+                  See
+               </Button>
             </div>
          </div>
       </>

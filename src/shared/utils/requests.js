@@ -1,14 +1,13 @@
 const requests = {
-  byTags: `/public/tags/`,
-  fetchByTitle: `/public/getByTitle/`,
-  fetchByTags: `/public/getByTags/`,
-  fetchById: `/public/productById/`,
-  fetchAllProducts: '/public/allProductsInShop/',
-  signUp: '/auth/signUp',
-  adminRoute: 'api/admin/auth/admin',
-  withQuery: (route, id) => route.concat(id)
-
-}
+   byTags: `/public/tags/`,
+   fetchByTitle: `/public/getByTitle/`,
+   fetchByTags: `/public/getByTag/`,
+   fetchById: `/public/productById/`,
+   fetchAllProducts: '/public/allProductsInShop/',
+   signUp: '/auth/signUp',
+   adminRoute: 'api/admin/auth/admin',
+   withQuery: (route, id) => route.concat(id)
+};
 
 // const requests = {
 //   fetchTrending: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
@@ -20,6 +19,5 @@ const requests = {
 //   fetchRomanceMovies: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
 //   fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`
 // };
-
 
 export default requests;
