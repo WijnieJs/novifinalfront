@@ -9,7 +9,7 @@ const ProductById = () => {
    //  useEffect(() => {
    //   const product = await ProductActions.findById(3)
    // }, [])
-   return <div></div>;
+   return <div>{/* addd   */}</div>;
 };
 
 export default ProductById;
