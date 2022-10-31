@@ -3,12 +3,7 @@ const notesReducer = (state, action) => {
       case 'POPULATE_NOTES':
          return action.notes;
       case 'ADD_NOTE':
-         return [
-            ...state,
-            {
-               product: { ...action.product }
-            }
-         ];
+         return [...state, { ...action.product }];
       case 'REMOVE_NOTE':
          return state.filter((note) => note.title !== action.title);
       default:

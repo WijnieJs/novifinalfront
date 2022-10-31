@@ -32,7 +32,7 @@ import './App.css';
 import NoteApp from './pages/notes/NoteApp';
 import NewProduct from './pages/Product/NewProduct';
 import EditProduct from './pages/Product/EditProduct';
-
+import Card from './components/Card/Card';
 function App() {
    const [notes, dispatch] = useReducer(notesReducer, []);
    const [isAuth, setIsAuth] = useState(false);
@@ -101,7 +101,7 @@ function App() {
          <Route path='/allproducts' element={<ProductList />} />
          <Route path='/newproduct' element={<NewProduct />} />
          <Route path='/edit' element={<EditProduct />} />
-         {/* <Route path='/cart' element={<Favorites />} /> */}
+         <Route path='/cart' element={<Card />} />
 
          <Route path='/admin' element={<Admin />} />
          <Route path='/login' element={<Login />} />

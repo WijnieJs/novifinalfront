@@ -1,15 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 import Button from '../Button/Button';
 import Image from '../Image/Image';
 import placeHolderImage from '../../shared/images/devh.jpg';
+import ErrorHandler from '../ErrorHandler/ErrorHandler';
 import './Product.css';
 import ProductActions from '../../shared/store/ProductActions';
 import NotesContext from '../../shared/store/notes-context';
 import { useNavigate } from 'react-router-dom';
 
 const Product = (props) => {
-   const { dispatch } = useContext(NotesContext);
+   const { dispatch, notes } = useContext(NotesContext);
+   const [error, setError] = useState(false);
+   const [errorMessage, setErrorMessage] = useState('');
    let navigate = useNavigate();
 
    function navme(id) {
@@ -18,26 +21,50 @@ const Product = (props) => {
    }
 
    const addToCartHandler = async (id) => {
-      try {
-         console.log(id);
+      let updated = [];
+      let newQuantity = 0;
+      const findNotes = notes.find((note) => note.productId == id);
+      if (findNotes) {
+         setErrorMessage('Product already in Cart');
+
+         setError(true);
+      } else {
          const res = await ProductActions.getById(id);
-         console.log(res.data);
+
          const prod = res.data;
-         prod.amount = 1;
+
+         let newProduct = {
+            productId: prod.id,
+            price: prod.price
+         };
+
          dispatch({
             type: 'ADD_NOTE',
-            product: prod
+            product: newProduct
          });
-         return res;
-      } catch (err) {
-         console.log(err);
       }
-
-      // navigate(`/productdetail/${2}`);
    };
+   // navigate(`/productdetail/${2}`);
 
+   const errorAcceptHandler = () => {
+      setError(false);
+      navigate(`/cart`);
+   };
+   const errorCancelHandler = () => {
+      setError(false);
+   };
    return (
       <>
+         {console.log(notes)}
+         <ErrorHandler
+            title='Item is in your cart'
+            actionText='See cart'
+            noActionText='Shop more'
+            error={error}
+            onHandle={errorAcceptHandler}
+            onCancel={errorCancelHandler}
+            msg={errorMessage}
+         />
          <div className='product'>
             <div className='product__image'>
                <Image imageUrl={placeHolderImage} center />

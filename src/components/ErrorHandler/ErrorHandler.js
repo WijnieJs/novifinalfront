@@ -8,10 +8,12 @@ const errorHandler = (props) => (
       {props.error && <Backdrop onClick={props.onHandle} />}
       {props.error && (
          <Modal
-            title='An Error Occurred'
-            onCancelModal={props.onHandle}
+            title={props.title ? props.title : 'An Error Occurred'}
+            onCancelModal={props.onCancel}
             onAcceptModal={props.onHandle}
             acceptEnabled
+            actionText={props.actionText}
+            noActionText={props.noActionText}
          >
             <p>{props.msg}</p>
          </Modal>

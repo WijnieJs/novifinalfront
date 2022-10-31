@@ -9,7 +9,7 @@ const Single = ({ title, fetchUrl }) => {
    useEffect(() => {
       async function fetchData() {
          const req = await axios.get(fetchUrl);
-         console.log(req.data);
+
          setProducts(req.data);
          return req;
       }
@@ -20,7 +20,7 @@ const Single = ({ title, fetchUrl }) => {
    return (
       <React.Fragment>
          <h2>{title}</h2>
-         {console.log(products)}
+
          <div className='card_list_grid'>
             {products.map((prod) => (
                <Product
@@ -30,8 +30,6 @@ const Single = ({ title, fetchUrl }) => {
                   price={prod.price}
                   tags={prod.tags}
                   content={prod.description}
-                  onStartEdit={() => console.log(prod.id)}
-                  onDelete={() => console.log('aaa')}
                />
             ))}
          </div>
