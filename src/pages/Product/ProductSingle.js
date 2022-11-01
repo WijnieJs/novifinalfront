@@ -5,12 +5,11 @@ import Single from '../../shared/api/single';
 
 import requests from '../../shared/utils/requests';
 
-const ProductList = (props) => {
-   // const { favorites } = useContext(GlobalContext);
+const ProductSingle = (props) => {
    const { id } = useParams();
 
    const { withQuery } = requests;
-   console.log(props);
+
    return (
       <div className=''>
          <h5>Hi we learning new thing</h5>
@@ -23,4 +22,4 @@ const ProductList = (props) => {
    );
 };
 
-export default ProductList;
+export default ProductSingle;

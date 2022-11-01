@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
+
 import axios from './http-common';
 
 const Single = ({ title, fetchUrl }, props) => {
-   console.log(props);
    const [product, setProduct] = useState([]);
 
    useEffect(() => {

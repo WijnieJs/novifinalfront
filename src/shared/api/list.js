@@ -3,7 +3,7 @@ import axios from './http-common';
 import Product from '../../components/Product/Product';
 
 import './productslist.css';
-const Single = ({ title, fetchUrl }) => {
+const ProductList = ({ title, fetchUrl }) => {
    const [products, setProducts] = useState([]);
 
    useEffect(() => {
@@ -37,4 +37,4 @@ const Single = ({ title, fetchUrl }) => {
    );
 };
 
-export default Single;
+export default ProductList;

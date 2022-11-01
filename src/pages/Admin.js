@@ -1,22 +1,19 @@
 import React from 'react';
 
-import List from "../shared/api/list"
-import requests from "../shared/utils/requests"
-import NoteList from "./notes/NoteList"
+import AuthActions from '../shared/store/AuthActions';
 
 const Admin = () => {
+   const user = AuthActions.getCurrentUser();
 
-  return (
-    <div className="">
-      <h5>Hi we learning new thing</h5>
-      <List title="All Products" fetchUrl={requests.fetchAllProducts}> </List>
-      <h4>Populairr</h4>
+   console.log(user);
+   return (
+      <div className=''>
+         <h5>Hi we learning new thing</h5>
+         <h4>Populairr</h4>
 
-      <h3>Sales</h3>
-
-
-    </div>
-  )
-}
+         <h3>Sales</h3>
+      </div>
+   );
+};
 
 export default Admin;

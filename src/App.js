@@ -14,7 +14,6 @@ import MobileNav from './components/Navigation/MobileNavigation/MobileNavigation
 
 import Backdrop from './components/Backdrop/Backdrop';
 
-import ProductsRow from './pages/Product/ProductsRow';
 import ProductList from './pages/Product/ProductList';
 import ProductSingle from './pages/Product/ProductSingle';
 
@@ -29,7 +28,6 @@ import EventBus from './common/EventBus';
 import AuthActions from './shared/store/AuthActions';
 import './App.css';
 
-import NoteApp from './pages/notes/NoteApp';
 import NewProduct from './pages/Product/NewProduct';
 import EditProduct from './pages/Product/EditProduct';
 import Card from './components/Card/Card';
@@ -93,7 +91,7 @@ function App() {
    let routes = (
       <Routes>
          <Route path='/' element={<Home />} />
-         <Route path='/productsrow' element={<ProductsRow />} />
+
          <Route
             path='/productdetail/:id'
             element={<ProductSingle />}
