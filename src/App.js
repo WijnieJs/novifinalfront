@@ -18,6 +18,8 @@ import ProductList from './pages/Product/ProductList';
 import ProductSingle from './pages/Product/ProductSingle';
 
 import Admin from './pages/Admin';
+import Checkout from './pages/Checkout/Checkout';
+
 import Toolbar from './components/Toolbar/Toolbar';
 import Home from './pages/Home';
 import Login from './pages/Auth/Login';
@@ -100,6 +102,7 @@ function App() {
          <Route path='/newproduct' element={<NewProduct />} />
          <Route path='/edit' element={<EditProduct />} />
          <Route path='/cart' element={<Card />} />
+         <Route path='/checkout' element={<Checkout />} />
 
          <Route path='/admin' element={<Admin />} />
          <Route path='/login' element={<Login />} />

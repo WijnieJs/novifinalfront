@@ -30,11 +30,11 @@ const Product = (props) => {
          setError(true);
       } else {
          const res = await ProductActions.getById(id);
-
          const prod = res.data;
 
          let newProduct = {
             productId: prod.id,
+            title: prod.title,
             price: prod.price
          };
 

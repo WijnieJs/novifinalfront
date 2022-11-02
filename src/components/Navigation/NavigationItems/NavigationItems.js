@@ -13,6 +13,8 @@ let navItems = [
 
    // User auth routes
    { id: 'cart', text: 'Cart', link: '/cart', auth: false },
+   { id: 'cart', text: 'Checkout', link: '/checkout', auth: false },
+
    { id: 'sales', text: 'Sales', link: '/productsrow', auth: true },
    {
       id: 'detail',
