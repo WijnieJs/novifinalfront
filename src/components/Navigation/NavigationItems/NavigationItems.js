@@ -13,7 +13,6 @@ let navItems = [
 
    // User auth routes
    { id: 'cart', text: 'Cart', link: '/cart', auth: false },
-   { id: 'cart', text: 'Checkout', link: '/checkout', auth: false },
 
    { id: 'sales', text: 'Sales', link: '/productsrow', auth: true },
    {
@@ -36,7 +35,7 @@ const NavigationItems = (props) => {
                   props.mobile ? 'mobile' : ''
                ].join(' ')}
             >
-               <NavLink to={item.link} exact onClick={props.onChoose}>
+               <NavLink to={item.link} onClick={props.onChoose}>
                   {item.text}
                </NavLink>
             </li>
@@ -49,7 +48,7 @@ const NavigationItems = (props) => {
                props.mobile ? 'mobile' : ''
             ].join(' ')}
          >
-            <NavLink to='/admin' exact onClick={props.onChoose}>
+            <NavLink to='/admin' onClick={props.onChoose}>
                Admin
             </NavLink>
          </li>

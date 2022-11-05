@@ -10,29 +10,32 @@ const ProductList = () => {
       requests.fetchAllProducts
    );
    const [tags, setTags] = useState([]);
+
    useEffect(() => {
       async function fetchData() {
          const req = await axios.get(
             'http://localhost:8080/api/public/tags'
          );
-         console.log(req.data);
          setTags(req.data);
          return req;
       }
 
       fetchData();
-   }, []);
+   }, [fetchUrl]);
 
    const handleTags = (name) => {
       const url = withQuery(requests.fetchByTags, name);
 
       setFetchUrl(url);
    };
+
    return (
       <div className=''>
          {tags.map((tag) => {
             return (
-               <p onClick={() => handleTags(tag.name)}>{tag.name}</p>
+               <p key={tag.name} onClick={() => handleTags(tag.name)}>
+                  {tag.name}
+               </p>
             );
          })}
          <List title='All Products' fetchUrl={fetchUrl}>

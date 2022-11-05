@@ -6,45 +6,46 @@ import placeHolderImage from '../../shared/images/devh.jpg';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
 import './Product.css';
 import ProductActions from '../../shared/store/ProductActions';
-import NotesContext from '../../shared/store/notes-context';
+import NotesContext from '../../shared/store/context';
 import { useNavigate } from 'react-router-dom';
 
 const Product = (props) => {
-   const { dispatch, notes } = useContext(NotesContext);
+   const { dispatch, items } = useContext(NotesContext);
+
    const [error, setError] = useState(false);
    const [errorMessage, setErrorMessage] = useState('');
+
    let navigate = useNavigate();
 
    function navme(id) {
       console.log(id);
+      // const res = await ProductActions.getById(id);
+      // const prod = res.data;
+      // SET AS CURRENT PROD
       navigate(`/productdetail/${id}`);
    }
 
-   const addToCartHandler = async (id) => {
+   const addToCartHandler = async (id, title, price) => {
       let updated = [];
       let newQuantity = 0;
-      const findNotes = notes.find((note) => note.productId == id);
-      if (findNotes) {
-         setErrorMessage('Product already in Cart');
-
-         setError(true);
-      } else {
-         const res = await ProductActions.getById(id);
-         const prod = res.data;
-
-         let newProduct = {
-            productId: prod.id,
-            title: prod.title,
-            price: prod.price
-         };
-
-         dispatch({
-            type: 'ADD_NOTE',
-            product: newProduct
-         });
-      }
+      // setErrorMessage('Product already in Cart');
+      // setError(true);
+      let newProduct = {
+         id,
+         title,
+         price
+      };
+      dispatch({
+         type: 'ADD_PRODUCT_TO_CART',
+         payload: newProduct
+      });
    };
-   // navigate(`/productdetail/${2}`);
+   const removeFromCartHandler = (id) => {
+      dispatch({
+         type: 'REMOVE_PRODUCT_FROM_CART',
+         payload: id
+      });
+   };
 
    const errorAcceptHandler = () => {
       setError(false);
@@ -55,7 +56,6 @@ const Product = (props) => {
    };
    return (
       <>
-         {console.log(notes)}
          <ErrorHandler
             title='Item is in your cart'
             actionText='See cart'
@@ -76,13 +76,23 @@ const Product = (props) => {
             <div className='product__actions'>
                <Button
                   mode='raised'
-                  onClick={() => addToCartHandler(props.id)}
+                  onClick={() =>
+                     addToCartHandler(
+                        props.id,
+                        props.title,
+                        props.price
+                     )
+                  }
                >
                   Add
                </Button>
-               {/* {/* <Button mode='flat' onClick={props.onStartEdit}>
-                     Edit
-                  </Button> */}
+               <Button
+                  mode='raised'
+                  design='danger'
+                  onClick={() => removeFromCartHandler(props.id)}
+               >
+                  DELETE CA
+               </Button>
                <Button
                   mode='raised'
                   design='accent'

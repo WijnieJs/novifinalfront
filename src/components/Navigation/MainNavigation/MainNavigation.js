@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import MobileToggle from '../MobileToggle/MobileToggle';
@@ -7,7 +7,7 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 
 import './MainNavigation.css';
 
-const mainNavigation = (props) => {
+const MainNavigation = (props) => {
    return (
       <nav className='main-nav'>
          <MobileToggle onOpen={props.onOpenMobileNav} />
@@ -29,4 +29,4 @@ const mainNavigation = (props) => {
    );
 };
 
-export default mainNavigation;
+export default MainNavigation;

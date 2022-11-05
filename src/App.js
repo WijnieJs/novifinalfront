@@ -1,42 +1,42 @@
 import React, {
    useState,
-   useContext,
    useReducer,
-   useEffect
+   useEffect,
+   useContext
 } from 'react';
-
-import Layout from './components/Layout/Layout';
-
+import './App.css';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import MainNavigation from './components/Navigation/MainNavigation/MainNavigation';
 import MobileNav from './components/Navigation/MobileNavigation/MobileNavigation';
-
+import Layout from './components/Layout/Layout';
+import Card from './components/Card/Card';
 import Backdrop from './components/Backdrop/Backdrop';
+import Toolbar from './components/Toolbar/Toolbar';
 
 import ProductList from './pages/Product/ProductList';
 import ProductSingle from './pages/Product/ProductSingle';
-
 import Admin from './pages/Admin';
-import Checkout from './pages/Checkout/Checkout';
 
-import Toolbar from './components/Toolbar/Toolbar';
 import Home from './pages/Home';
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
-import NotesContext from './shared/store/notes-context';
-import notesReducer from './shared/store/notes';
-import EventBus from './common/EventBus';
-import AuthActions from './shared/store/AuthActions';
-import './App.css';
-
 import NewProduct from './pages/Product/NewProduct';
 import EditProduct from './pages/Product/EditProduct';
-import Card from './components/Card/Card';
-function App() {
-   const [notes, dispatch] = useReducer(notesReducer, []);
-   const [isAuth, setIsAuth] = useState(false);
 
+import AuthActions from './shared/store/AuthActions';
+import ShopContext from './shared/store/context';
+import cartItemsReducer from './shared/store/reducer';
+import EventBus from './common/EventBus';
+
+function App() {
+   const initialState = useContext(ShopContext);
+   const [shop, dispatch] = useReducer(
+      cartItemsReducer,
+      initialState
+   );
+
+   const [isAuth, setIsAuth] = useState(false);
    const [showModeratorBoard, setShowModeratorBoard] = useState(
       false
    );
@@ -102,7 +102,6 @@ function App() {
          <Route path='/newproduct' element={<NewProduct />} />
          <Route path='/edit' element={<EditProduct />} />
          <Route path='/cart' element={<Card />} />
-         <Route path='/checkout' element={<Checkout />} />
 
          <Route path='/admin' element={<Admin />} />
          <Route path='/login' element={<Login />} />
@@ -111,7 +110,7 @@ function App() {
    );
 
    return (
-      <NotesContext.Provider value={{ notes, dispatch }}>
+      <ShopContext.Provider value={{ shop, dispatch }}>
          <BrowserRouter>
             <React.Fragment>
                {showBackdrop && (
@@ -148,7 +147,7 @@ function App() {
                {routes}
             </React.Fragment>
          </BrowserRouter>
-      </NotesContext.Provider>
+      </ShopContext.Provider>
    );
 }
 export default App;
