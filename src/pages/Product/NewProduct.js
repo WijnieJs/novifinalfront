@@ -8,7 +8,7 @@ import Input from '../../components/Form/Input';
 import { VALIDATOR_REQUIRE } from '../../shared/utils/validators';
 import Button from '../../components/Button/Button';
 import Auth from '../Auth/Auth';
-import ImageUpload from '../../components/Form/ImageUpload';
+
 const NewProduct = () => {
    const navigate = useNavigate();
    const [file, setFile] = useState();
@@ -49,10 +49,7 @@ const NewProduct = () => {
             file: file
          };
          await ProductActions.add(formData);
-
-         console.log('Trough');
       } catch (error) {
-         console.log(error);
          if (error.response.data) {
             setErrorMessage(Object.values(error.response.data));
             setError(true);
@@ -102,18 +99,7 @@ const NewProduct = () => {
                errorText='Please enter a price'
                onInput={inputHandler}
             />
-            <input
-               type='file'
-               name='image-field'
-               id='student-image'
-               onChange={fileChangedHandler}
-            />
-            {/* <ImageUpload
-               id='image'
-               onInput={inputHandler}
-               errorText='Please provide an image.'
-            /> */}
-            =
+
             <Button mode='raised' onClick={uploadHandler}>
                Submit
             </Button>

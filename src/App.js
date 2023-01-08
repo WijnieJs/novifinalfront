@@ -23,6 +23,7 @@ import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
 import NewProduct from './pages/Product/NewProduct';
 import EditProduct from './pages/Product/EditProduct';
+import AddImageToProd from './pages/Product/AddImageToProduct';
 
 import AuthActions from './shared/store/AuthActions';
 import ShopContext from './shared/store/context';
@@ -41,7 +42,7 @@ function App() {
       false
    );
    const [showAdminBoard, setShowAdminBoard] = useState(false);
-   const [currentUser, setCurrentUser] = useState(undefined);
+   // const [currentUser, setCurrentUser] = useState(undefined);
 
    const [navState, setNavState] = useState({
       showBackdrop: false,
@@ -56,7 +57,7 @@ function App() {
       if (user) {
          console.log(user.roles);
          setIsAuth(true);
-         setCurrentUser(user);
+         // setCurrentUser(user);
          setShowModeratorBoard(user.roles.includes('ROLE_MODERATOR'));
          setShowAdminBoard(user.roles.includes('ROLE_ADMIN'));
       }
@@ -75,7 +76,7 @@ function App() {
       setIsAuth(false);
       setShowModeratorBoard(false);
       setShowAdminBoard(false);
-      setCurrentUser(undefined);
+      // setCurrentUser(undefined);
    };
 
    const mobileNavHandler = (isOpen) => {
@@ -93,18 +94,22 @@ function App() {
    let routes = (
       <Routes>
          <Route path='/' element={<Home />} />
-
          <Route
             path='/productdetail/:id'
             element={<ProductSingle />}
          />
          <Route path='/allproducts' element={<ProductList />} />
          <Route path='/newproduct' element={<NewProduct />} />
-         <Route path='/edit' element={<EditProduct />} />
+         <Route path='/edit/:id' element={<EditProduct />} />
          <Route path='/cart' element={<Card />} />
-
+         <Route
+            path='/image-request/:id'
+            element={<AddImageToProd />}
+         />
          <Route path='/admin' element={<Admin />} />
          <Route path='/login' element={<Login />} />
+         {/* <Route path='/checkout' element={<Checkout />} /> */}
+
          <Route path='/signup' element={<Signup />} />
       </Routes>
    );

@@ -6,21 +6,14 @@ import './NavigationItems.css';
 let navItems = [
    { id: 'shop', text: 'Shop', link: '/allproducts', auth: false },
    { id: 'feed', text: 'Feed', link: '/feed', auth: false },
-   { id: 'add', text: 'add', link: '/newproduct', auth: false },
-   { id: 'edit', text: 'edit', link: '/edit', auth: false },
    { id: 'login', text: 'Login', link: '/login', auth: false },
    { id: 'signup', text: 'Signup', link: '/signup', auth: false },
-
-   // User auth routes
    { id: 'cart', text: 'Cart', link: '/cart', auth: false },
+   // User auth routes
+   { id: 'cart', text: 'Cart', link: '/cart', auth: true },
 
-   { id: 'sales', text: 'Sales', link: '/productsrow', auth: true },
-   {
-      id: 'detail',
-      text: 'Detail',
-      link: '/productdetail',
-      auth: false
-   }
+   { id: 'shop', text: 'Shop', link: '/allproducts', auth: true },
+   { id: 'add', text: 'Add', link: '/newproduct', auth: true }
 ];
 
 const NavigationItems = (props) => {

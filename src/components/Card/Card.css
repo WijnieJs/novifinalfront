@@ -7,3 +7,9 @@
   overflow: hidden;
   background: white;
 }
+.cart_items {
+  font-family: roboto;
+  text-align: center;
+  font-size: 19px;
+   
+}

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import Button from '../Button/Button';
 import Image from '../Image/Image';
@@ -14,6 +14,13 @@ const Product = (props) => {
 
    const [error, setError] = useState(false);
    const [errorMessage, setErrorMessage] = useState('');
+   const [image, setImage] = useState(placeHolderImage);
+
+   useEffect(() => {
+      if (props.imageUrl !== null) {
+         setImage(props.imageUrl.url);
+      }
+   }, [image]);
 
    let navigate = useNavigate();
 
@@ -67,39 +74,46 @@ const Product = (props) => {
          />
          <div className='product'>
             <div className='product__image'>
-               <Image imageUrl={placeHolderImage} center />
+               <Image imageUrl={image} center />
             </div>
             <div className='product_items'>
                <h1 className='product__title'>{props.title}</h1>
                <div className='product__content'>{props.content}</div>
             </div>
             <div className='product__actions'>
-               <Button
-                  mode='raised'
-                  onClick={() =>
-                     addToCartHandler(
-                        props.id,
-                        props.title,
-                        props.price
-                     )
-                  }
-               >
-                  Add
-               </Button>
-               <Button
-                  mode='raised'
-                  design='danger'
-                  onClick={() => removeFromCartHandler(props.id)}
-               >
-                  DELETE CA
-               </Button>
-               <Button
-                  mode='raised'
-                  design='accent'
-                  onClick={() => navme(props.id)}
-               >
-                  See
-               </Button>
+               {props.actions && (
+                  <>
+                     <Button
+                        mode='raised'
+                        onClick={() =>
+                           addToCartHandler(
+                              props.id,
+                              props.title,
+                              props.price
+                           )
+                        }
+                     >
+                        Add
+                     </Button>
+
+                     {/* <Button
+                        mode='raised'
+                        design='danger'
+                        onClick={() =>
+                           removeFromCartHandler(props.id)
+                        }
+                     >
+                        DELETE CA
+                     </Button> */}
+                     <Button
+                        mode='raised'
+                        design='accent'
+                        onClick={() => navme(props.id)}
+                     >
+                        See
+                     </Button>
+                  </>
+               )}
             </div>
          </div>
       </>

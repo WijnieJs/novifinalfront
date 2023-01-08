@@ -9,7 +9,7 @@ const ProductList = ({ title, fetchUrl }) => {
    useEffect(() => {
       async function fetchData() {
          const req = await axios.get(fetchUrl);
-
+         console.log(req.data);
          setProducts(req.data);
          return req;
       }
@@ -29,7 +29,9 @@ const ProductList = ({ title, fetchUrl }) => {
                   title={prod.title}
                   price={prod.price}
                   tags={prod.tags}
+                  imageUrl={prod.file}
                   content={prod.description}
+                  actions={true}
                />
             ))}
          </div>

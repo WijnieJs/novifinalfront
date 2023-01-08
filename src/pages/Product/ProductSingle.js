@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import Single from '../../shared/api/single';
-
+import AuthActions from '../../shared/store/AuthActions';
 import requests from '../../shared/utils/requests';
 
 const ProductSingle = (props) => {

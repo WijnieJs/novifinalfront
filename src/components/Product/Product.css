@@ -31,7 +31,7 @@
   font-size: 8px;
   
     display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
 
 }
 
@@ -42,8 +42,6 @@
 }
   .product__content {
    font-size: 1.2rem;
- 
- 
    margin-bottom: 10px;
    height: 42px;
  }
@@ -56,6 +54,7 @@
  
 .product__actions {
   font-size: 18px;
+
 }
 
 }

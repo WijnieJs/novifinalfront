@@ -23,25 +23,24 @@ const ProductList = () => {
       fetchData();
    }, [fetchUrl]);
 
-   const handleTags = (name) => {
-      const url = withQuery(requests.fetchByTags, name);
+   // const handleTags = (name) => {
+   //    const url = withQuery(requests.fetchByTags, name);
 
-      setFetchUrl(url);
-   };
+   //    setFetchUrl(url);
+   // };
 
    return (
       <div className=''>
-         {tags.map((tag) => {
+         {/* {tags.map((tag) => {
             return (
                <p key={tag.name} onClick={() => handleTags(tag.name)}>
                   {tag.name}
                </p>
             );
-         })}
+         })} */}
          <List title='All Products' fetchUrl={fetchUrl}>
             {' '}
          </List>
-         <h4>Populairr</h4>
 
          <h3>Sales</h3>
       </div>

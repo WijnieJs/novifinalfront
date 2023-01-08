@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
+import { useNavigate, useParams } from 'react-router-dom';
 import ErrorHandler from '../../components/ErrorHandler/ErrorHandler';
 import ProductActions from '../../shared/store/ProductActions';
-import { useNavigate } from 'react-router-dom';
+
 import { useForm } from '../../shared/utils/form-hook';
 import Input from '../../components/Form/Input';
 import { VALIDATOR_REQUIRE } from '../../shared/utils/validators';
@@ -11,15 +11,15 @@ import requests from '../../shared/utils/requests';
 import axios from '../../shared/api/http-common';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import Auth from '../Auth/Auth';
+
 const NewProduct = () => {
+   const params = useParams();
    const { withQuery } = requests;
    const navigate = useNavigate();
-   const fetchUrl = withQuery(requests.fetchById, 2);
+   const fetchUrl = withQuery(requests.fetchById, params.id);
    const [error, setError] = useState(false);
    const [isLoading, setIsLoading] = useState(true);
-
    const [loadedProduct, setLoadedProduct] = useState();
-
    const [errorMessage, setErrorMessage] = useState('');
    const [formState, inputHandler, setFormData] = useForm(
       {
@@ -42,9 +42,7 @@ const NewProduct = () => {
       async function fetchData() {
          try {
             const responseData = await axios.get(fetchUrl);
-            console.log(responseData.data);
             setLoadedProduct(responseData.data);
-            console.log(loadedProduct);
             setIsLoading(false);
             setFormData(
                {
@@ -77,19 +75,13 @@ const NewProduct = () => {
             description: formState.inputs.description.value,
             price: formState.inputs.price.value
          };
-
          await ProductActions.edit(formData);
-         navigate('/');
-      } catch (err) {
-         console.log('errr');
-         console.log(err);
-      }
+         navigate('/allProducts');
+      } catch (err) {}
    };
-
    return (
       <Auth>
          <h2>Edit this Product</h2>
-
          <ErrorHandler
             error={error}
             onHandle={errorAcceptHandler}

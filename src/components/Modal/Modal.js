@@ -22,7 +22,6 @@ const modal = (props) =>
             <Button
                mode='raised'
                onClick={props.onAcceptModal}
-               disabled={!props.acceptEnabled}
                loading={props.isLoading}
             >
                {props.actionText ? props.actionText : ' Accept'}
